@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/18 15:19:13 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/26 12:02:00 by tperraut         ###   ########.fr       */
+/*   Updated: 2014/11/27 18:28:07 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ft_join_free(char **tofree, char *tojoin)
 
 int		ft_check_eof(char **line, char **myline)
 {
+	if (!line)
+		return (-1);
 	if (*myline)
 	{
 		if (*myline[0] == '\0')
@@ -64,7 +66,7 @@ int		get_next_line(int const fd, char **line)
 	{
 		if (!(rd = read(fd, buf, CHECK(BUFF_SIZE))))
 			return (ft_check_eof(line, &myline));
-		if (rd == -1)
+		if (rd == -1 || !line)
 			return (-1);
 		len += rd;
 		buf[rd] = '\0';
