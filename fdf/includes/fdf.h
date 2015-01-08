@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2015/01/07 14:53:23 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/01/08 13:17:57 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ typedef	struct	s_grid	t_grid;
 typedef	struct	s_grid
 {
 	t_point	point;
-	t_grid	*next;
+	t_grid	*left;
+	t_grid	*up;
 }
 typedef	struct	s_env
 {
 	void	*mlx;
 	void	*win;
 }				t_env;
+t_point	*ft_create_point(int x, int y, int z);
+t_grid	*ft_add_left(t_grid *grid, t_point *point);
 #endif
