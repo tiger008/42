@@ -6,36 +6,12 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 11:59:01 by tperraut          #+#    #+#             */
-/*   Updated: 2015/01/07 15:59:05 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/01/08 13:17:54 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-t_point	*ft_create_point(int width, int height, char **split_line)
-{
-	t_point	*point;
-
-	if(!(point = (t_point *)malloc(sizeof(t_point))))
-		return (NULL);
-	point->x = width;
-	point->y = height;
-	point->z = ft_atoi(split_line[width]);
-	return (t_point);
-}
-
-t_grid	*ft_add_point(t_grid *grid, t_point *point)
-{
-	t_grid	*tmp;
-
-	tmp = (t_grid *)malloc(sizeof(t_grid));
-	if (tmp)
-	{
-		tmp->point = point;
-		tmp->next = grid;
-	}
-	return (tmp);
-}
+#include "libft.h"
 
 int		ft_make_grid(char *line, int height, t_grid *grid)
 {
@@ -50,7 +26,8 @@ int		ft_make_grid(char *line, int height, t_grid *grid)
 	}
 	while (split_line[width])
 	{
-		grid = ft_add_point(grid, ft_create_point(width, height, split_line));
+		grid = ft_add_point(grid, ft_create_point(width, height,
+					ft_atoi(split_line[width])));
 		width++;
 	}
 }
