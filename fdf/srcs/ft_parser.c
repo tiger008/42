@@ -6,7 +6,7 @@
 /*   By: tperraut <mythom008@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:53:37 by tperraut          #+#    #+#             */
-/*   Updated: 2015/01/20 15:54:27 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/01/20 21:18:52 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void	ft_freethree(char **one, int **two, int **three)
+static void	ft_freethree(char **one, int **two, int **three)
 {
 	if (one)
 		free(*one);
@@ -25,7 +25,7 @@ void	ft_freethree(char **one, int **two, int **three)
 		free(*three);
 }
 
-int		*ft_strtoint(char *line)
+static int	*ft_strtoint(char *line)
 {
 	char	**splited;
 	int		i;
@@ -47,7 +47,7 @@ int		*ft_strtoint(char *line)
 	return (result);
 }
 
-int		*ft_tabjoin(int *tab1, int *tab2, int t1_size, int t2_size)
+static int	*ft_tabjoin(int *tab1, int *tab2, int t1_size, int t2_size)
 {
 	int	*dest;
 	int	i;
@@ -72,7 +72,7 @@ int		*ft_tabjoin(int *tab1, int *tab2, int t1_size, int t2_size)
 	return (dest);
 }
 
-int		ft_parser(int fd, t_grid *grid)
+int			ft_parser(int fd, t_grid *grid)
 {
 	char	*line;
 	int		get;
