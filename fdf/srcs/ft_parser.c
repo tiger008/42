@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tperraut <mythom008@gmail.com>             +#+  +:+       +#+        */
+/*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:53:37 by tperraut          #+#    #+#             */
-/*   Updated: 2015/01/20 21:18:52 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/04/09 11:37:47 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ static int	*ft_strtoint(char *line)
 	while (splited[++i])
 		len++;
 	if(!(result = (int *)malloc(sizeof(int) * (len + 1))))
+	{
+		free(splited);
 		return (NULL);
+	}
 	i = 0;
 	while (splited[++i])
 		result[i] = ft_atoi(splited[i]);
 	result[0] = len;
+	free(splited);
 	return (result);
 }
 
@@ -97,7 +101,5 @@ int			ft_parser(int fd, t_grid *grid)
 		ft_freethree(&line, &to_free, &temp);
 		grid->li++;
 	}
-	if (get ==  ERROR)
-		return (ERROR);
-	return (1);
+	return ((get == ERROR) ? ERROR : 1);
 }
