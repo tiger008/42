@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:53:37 by tperraut          #+#    #+#             */
-/*   Updated: 2015/04/09 11:37:47 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/05/27 13:24:58 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ static int	*ft_strtoint(char *line)
 	int		len;
 
 	len = 0;
-	if(!(splited = ft_strsplit(line, ' ')))
+	if (!(splited = ft_strsplit(line, ' ')))
 		return (NULL);
 	i = -1;
 	while (splited[++i])
 		len++;
-	if(!(result = (int *)malloc(sizeof(int) * (len + 1))))
+	if (!(result = (int *)malloc(sizeof(int) * (len + 1))))
 	{
 		free(splited);
 		return (NULL);
 	}
 	i = 0;
-	while (splited[++i])
-		result[i] = ft_atoi(splited[i]);
+	while (splited[i++])
+		result[i] = ft_atoi(splited[i - 1]);
 	result[0] = len;
 	free(splited);
 	return (result);
@@ -67,11 +67,11 @@ static int	*ft_tabjoin(int *tab1, int *tab2, int t1_size, int t2_size)
 		while (i < t1_size)
 			dest[j++] = tab1[i++];
 	}
-	i = 1;
+	i = 0;
 	if (tab2)
 	{
-		while (i <= t2_size)
-			dest[j++] = tab2[i++];
+		while (i < t2_size)
+			dest[j++] = tab2[++i];
 	}
 	return (dest);
 }
@@ -95,7 +95,7 @@ int			ft_parser(int fd, t_grid *grid)
 		else if (grid->co != temp[0])
 			return (ERROR);
 		to_free = grid->tab;
-		if(!(grid->tab = ft_tabjoin(grid->tab, temp,
+		if (!(grid->tab = ft_tabjoin(grid->tab, temp,
 				grid->co * grid->li, grid->co)))
 			return (ERROR);
 		ft_freethree(&line, &to_free, &temp);

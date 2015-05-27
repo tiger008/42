@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 23:20:19 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/16 00:03:15 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/05/27 10:46:00 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ char		**ft_strsplit(const char *s, char c)
 		while (*s != '\0' && *s != c)
 			s++;
 	}
-	tab[j] = '\0';
+	tab[j] = NULL;
 	return (tab);
 }
