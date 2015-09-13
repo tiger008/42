@@ -2,12 +2,15 @@
 
 void	ft_strstrdel(char ***a)
 {
+	int	i;
+
+	i = 0;
 	if (a == NULL)
 		return;
-	while (*a != NULL)
+	while (*a[i])
 	{
-		free(*a);
-		(*a)++;
+		free(*a[i]);
+		i++;
 	}
 	free(a);
 }
