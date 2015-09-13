@@ -40,14 +40,14 @@ static int	*ft_strtoint(char *line)
 		len++;
 	if (!(result = (int *)malloc(sizeof(int) * (len + 1))))
 	{
-		ft_strstrdel(&splited);
+		ft_strstrdel(splited);
 		return (NULL);
 	}
 	i = 0;
 	while (splited[i++])
 		result[i] = ft_atoi(splited[i - 1]);
 	result[0] = len;
-	ft_strstrdel(&splited);
+	ft_strstrdel(splited);
 	return (result);
 }
 
