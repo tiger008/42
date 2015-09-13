@@ -40,7 +40,7 @@ static int	*ft_strtoint(char *line)
 		len++;
 	if (!(result = (int *)malloc(sizeof(int) * (len + 1))))
 	{
-		free(splited);
+		ft_strstrdel(&splited);
 		return (NULL);
 	}
 	i = 0;

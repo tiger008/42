@@ -4,10 +4,10 @@ void	ft_strstrdel(char ***a)
 {
 	if (a == NULL)
 		return;
-	while (*a)
+	while (*a != NULL)
 	{
 		free(**a);
-		*a = NULL;
 		(*a)++;
 	}
+	free(a);
 }
