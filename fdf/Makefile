@@ -13,14 +13,14 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 LIB = ./libft/
-HEADER = ./includes/
+HEADER = ./include/
 LIBHEADER = ./libft/includes/
 NAME = fdf
 SRC = \
-	srcs/ft_parser.c \
-	srcs/main.c \
-	srcs/ft_initgrid.c \
-	srcs/get_next_line.c
+	src/ft_parser.c \
+	src/main.c \
+	src/ft_initgrid.c \
+	src/get_next_line.c
 
 OBJ = $(SRC:.c=.o)
 
