@@ -6,7 +6,7 @@ void	ft_strstrdel(char ***a)
 		return;
 	while (*a != NULL)
 	{
-		free(**a);
+		free(*a);
 		(*a)++;
 	}
 	free(a);
