@@ -47,7 +47,7 @@ static int	*ft_strtoint(char *line)
 	while (splited[i++])
 		result[i] = ft_atoi(splited[i - 1]);
 	result[0] = len;
-	free(splited);
+	ft_strstrdel(&splited);
 	return (result);
 }
 
