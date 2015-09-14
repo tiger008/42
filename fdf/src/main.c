@@ -49,7 +49,7 @@ void	draw_line(t_pt p1, t_pt p2, t_iimg *img)
 
 	if (p2.x - p1.x < 0)
 		draw_line(p2, p1, img);
-	else if (ABS((p2.y - p1.y) / (p2.x - p1.x)) > 0)
+	else if (ABS((p2.y - p1.y) / (p2.x - p1.x)) > 1)
 	{
 		draw_line(p_inv(p1), p_inv(p2), img);
 	}
