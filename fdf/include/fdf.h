@@ -13,11 +13,31 @@
 #ifndef FDF_H
 # define FDF_H
 # define ERROR -1
+# define WIN_X 480
+# define WIN_Y 640
+# define RED 0x33
+# define GREEN 0x33
+# define BLUE 0xFF
+
+typedef struct	s_pt
+{
+	int		x;
+	int		y;
+}		t_pt;
+
+typedef struct	s_iimg
+{
+	char	*data;
+	int		bpp;
+	int		sizeline;
+	int		endian;
+}		t_iimg;
 
 typedef	struct	s_env
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
 }				t_env;
 typedef	struct	s_grid
 {

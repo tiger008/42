@@ -12,7 +12,13 @@
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-LIB = ./libft/
+LIBFT = ./libft/
+LIB = -L./libft/
+LIB += -lft
+LIB += -L/usr/lib64
+LIB += -lmlx
+LIB += -lX11
+LIB += -lXext
 HEADER = ./include/
 LIBHEADER = ./libft/includes/
 NAME = fdf
@@ -27,16 +33,16 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd $(LIB) && $(MAKE) && cd .. && $(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIB) -lft
+	cd $(LIBFT) && $(MAKE) && cd .. && $(CC) $(CFLAGS) -o $@ $(OBJ) $(LIB)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADER) -I $(LIBHEADER)
 
 clean:
-	rm -f $(OBJ) && cd $(LIB) && $(MAKE) $@
+	rm -f $(OBJ) && cd $(LIBFT) && $(MAKE) $@
 
 fclean: clean
-	rm -f $(NAME) && cd $(LIB) && $(MAKE) $@
+	rm -f $(NAME) && cd $(LIBFT) && $(MAKE) $@
 
 re: fclean all
 
