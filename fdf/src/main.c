@@ -45,12 +45,14 @@ void	add_pt(t_pt p, t_iimg *img)
 
 void	draw_line(t_pt p1, t_pt p2, t_iimg *img)
 {
-	t_pt	p;
+	t_pt		p;
+	static int	x = 0;
 
 	if (p2.x - p1.x < 0)
 		draw_line(p2, p1, img);
 	else if (ABS((p2.y - p1.y) / (p2.x - p1.x)) > 1)
 	{
+		x = 1;
 		draw_line(p_inv(p1), p_inv(p2), img);
 	}
 	else
@@ -59,7 +61,7 @@ void	draw_line(t_pt p1, t_pt p2, t_iimg *img)
 		p.y = p1.y;
 		while (p.x <= p2.x)
 		{
-			add_pt(p, img);
+			(x == 0) ? add_pt(p, img) : add_pt(p_inv(p), img);
 			p.y = p1.y + ((p2.y - p1.y) * (p.x - p1.x)) / (p2.x - p1.x);
 			(p.x)++;
 		}
@@ -140,6 +142,7 @@ int		main(int ac, char **av)
 			img.data = get_img_data(&env, &img);
 			draw_bg(&img);
 			draw_line(p_init(0, 0), p_init(479, 639), &img);
+			draw_line(p_init(0, 50), p_init(479, 50), &img);
 			draw_line(p_init(0, 639), p_init(479, 0), &img);
 			mlx_expose_hook(env.win, &ft_expose, &env);
 			mlx_loop(env.mlx);
