@@ -37,10 +37,11 @@ void	add_pt(t_pt p, t_iimg *img)
 {
 	unsigned char	*pixel;
 
-	pixel = (unsigned char *)img->data + p.y * img->sizeline + (img->bpp/8) * p.x;
-			pixel[2] = RED;
-			pixel[1] = GREEN;
-			pixel[0] = BLUE;
+	pixel = (unsigned char *)img->data + p.y * img->sizeline
+		+ (img->bpp/8) * p.x;
+	pixel[2] = RED;
+	pixel[1] = GREEN;
+	pixel[0] = BLUE;
 }
 
 void	draw_line(t_pt p1, t_pt p2, t_iimg *img)
@@ -80,7 +81,8 @@ void	draw_bg(t_iimg *img)
 		x = 0;
 		while (x <= WIN_X)
 		{
-			pixel = (unsigned char *)img->data + y * img->sizeline + (img->bpp/8) * x;
+			pixel = (unsigned char *)img->data + y * img->sizeline
+				+ (img->bpp/8) * x;
 			pixel[2] = (((WIN_X - x) % (2 * WIN_X))/(WIN_X/100))*(255/100);
 			pixel[1] = ((y % (2 * WIN_Y))/(WIN_Y/100))*(255/100);
 			pixel[0] = (((2 * WIN_X + x) % WIN_X)/(WIN_X/100))*(255/100);
@@ -91,7 +93,7 @@ void	draw_bg(t_iimg *img)
 }
 void	*get_img_data(t_env *env, t_iimg *img)
 {
-		return (mlx_get_data_addr(env->img,
+	return (mlx_get_data_addr(env->img,
 				&img->bpp,
 				&img->sizeline,
 				&img->endian));
@@ -103,18 +105,44 @@ int	ft_expose(t_env *env)
 	return (0);
 }
 
-/*void	rgx_pix(int x, int y, unsigned int color, t_img_inf *img)
+t_pt	iso(int x, int y, int z)
 {
-	unsigned char *pixel;
-	unsigned int *tmp_color;
+	return(p_init(CST1 * x - CST2 * y,
+				z + (CST1 / 2) * x + (CST2 / 2) * y));
+}
 
-	pixel = (unsigned char *)(img->data + y * img.sizeline
-			+ (img->bpp / 8) * x);
-	tmp_color = (unsigned char *)&color;
-	pixel[0] = tmp_color[0];
-	pixel[1] = tmp_color[1];
-	pixel[2] = tmp_color[2];
-}*/
+void	draw_grid(t_grid *grid, t_iimg *img)
+{
+	int	i;
+	int	j;
+	t_pt p;
+	t_pt p1;
+
+	p = p_init(0, 0);
+	i = -1;
+	j = -1;
+	while (++j < grid->li)
+	{
+		while (++i < grid->co)
+		{
+			p1 = iso(i, j, grid->tab[i * (j + 1)]);
+			draw_line(p, p1 , img);
+			p = p1;
+		}
+	}
+}
+/*void	rgx_pix(int x, int y, unsigned int color, t_img_inf *img)
+  {
+  unsigned char *pixel;
+  unsigned int *tmp_color;
+
+  pixel = (unsigned char *)(img->data + y * img.sizeline
+  + (img->bpp / 8) * x);
+  tmp_color = (unsigned char *)&color;
+  pixel[0] = tmp_color[0];
+  pixel[1] = tmp_color[1];
+  pixel[2] = tmp_color[2];
+  }*/
 int		main(int ac, char **av)
 {
 	t_grid	grid;
@@ -141,9 +169,10 @@ int		main(int ac, char **av)
 		{
 			img.data = get_img_data(&env, &img);
 			draw_bg(&img);
-			draw_line(p_init(0, 0), p_init(479, 639), &img);
-			draw_line(p_init(0, 50), p_init(479, 50), &img);
-			draw_line(p_init(0, 639), p_init(479, 0), &img);
+			//draw_line(p_init(0, 0), p_init(479, 639), &img);
+			//draw_line(p_init(0, 50), p_init(479, 50), &img);
+			//draw_line(p_init(0, 639), p_init(479, 0), &img);
+			draw_grid(&grid, &img);
 			mlx_expose_hook(env.win, &ft_expose, &env);
 			mlx_loop(env.mlx);
 		}
