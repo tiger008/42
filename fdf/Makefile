@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -ggdb3
 LIBFT = ./libft/
 LIB = -L./libft/
 LIB += -lft
