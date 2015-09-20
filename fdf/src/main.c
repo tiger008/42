@@ -33,11 +33,13 @@ void	add_pt(t_pt p, t_iimg *img)
 {
 	unsigned char	*pixel;
 
-	pixel = (unsigned char *)img->data + (p.y % WIN_Y) * img->sizeline
-		+ (img->bpp/8) * (p.x % WIN_X);
-	pixel[2] = RED;
-	pixel[1] = GREEN;
-	pixel[0] = BLUE;
+	if ((p.x > WIN_X) || (p.y > WIN_Y))
+		return ;
+	pixel = (unsigned char *)img->data + (p.y * img->sizeline
+		+ (img->bpp/8) * p.x);
+			pixel[2] = (((WIN_X - p.x) % (2 * WIN_X))/(WIN_X/100))*(255/100);
+			pixel[1] = ((p.y % (2 * WIN_Y))/(WIN_Y/100))*(255/100);
+			pixel[0] = (((2 * WIN_X + p.x) % WIN_X)/(WIN_X/100))*(255/100);
 }
 void	p_echo(t_pt p)
 {
@@ -104,8 +106,8 @@ int	ft_expose(t_env *env)
 
 t_pt	iso(int x, int y, int z)
 {
-	return(p_init(CST1 * x - CST2 * y,
-				z + (CST1 / 2) * x + (CST2 / 2) * y));
+	return(p_init((CST1 * x - CST2 * y) + 170,
+				(z/12 + (CST1 / 2) * x + (CST2 / 2) * y) + 170));
 }
 
 t_pt	p_delta(t_pt p)
@@ -123,7 +125,7 @@ void	draw_grid(t_grid *grid, t_iimg *img)
 	t_pt first;
 
 	j = -1;
-	p = p_init(0, 0);
+	p = iso(0, 0, grid->tab[0]);
 	while (++j < grid->li)
 	{
 		i = -1;

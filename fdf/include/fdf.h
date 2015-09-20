@@ -18,8 +18,8 @@
 # define RED 0x33
 # define GREEN 0x33
 # define BLUE 0xFF
-# define CST1 0.7
-# define CST2 0.7
+# define CST1 0.8
+# define CST2 0.8
 # define DELTA 20
 
 typedef struct	s_pt
