@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 # define ERROR -1
-# define WIN_X 480
+# define WIN_X 640
 # define WIN_Y 640
 # define RED 0x33
 # define GREEN 0x33

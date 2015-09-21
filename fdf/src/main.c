@@ -106,8 +106,8 @@ int	ft_expose(t_env *env)
 
 t_pt	iso(int x, int y, int z)
 {
-	return(p_init((CST1 * x - CST2 * y) + 170,
-				(z/12 + (CST1 / 2) * x + (CST2 / 2) * y) + 170));
+	return(p_init(ABS(((CST1 * x - CST2 * y) + 170)),
+				ABS(((-z/12 + (CST1 / 2) * x + (CST2 / 2) * y) + 170))));
 }
 
 t_pt	p_delta(t_pt p)
