@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 23:20:19 by tperraut          #+#    #+#             */
-/*   Updated: 2015/11/28 13:03:43 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/11/28 18:32:32 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_wordlen(const char *s, char c)
 	return (len);
 }
 
-char		**ft_freetab(char ***t, int i)
+static char	**ft_freetab(char ***t, int i)
 {
 	int	j;
 
