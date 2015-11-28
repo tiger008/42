@@ -6,14 +6,14 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/18 15:19:13 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/27 18:28:07 by tperraut         ###   ########.fr       */
+/*   Updated: 2015/11/28 17:26:37 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <string.h>
-#include "libft.h"
+#include "libft/include/libft.h"
 #include "get_next_line.h"
 
 int		get_end(char **line, char **myline, char **temp)
