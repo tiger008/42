@@ -16,24 +16,48 @@
 #include "fillit.h"
 #include "libft.h"
 
-static	short	new_trio(char *buf)
+static short	check(char *buf, short i)
+{
+	short	c;
+
+	if ((c = i - 1) >= 0 && buf[c] == '#')
+		return (0);
+	if ((c = i - 5) >= 0 && buf[c] == '#')
+		return (0);
+	if ((c = i + 1) < 19 && buf[c] == '#')
+		return (0);
+	if ((c = i + 5) < 19 && buf[c] == '#')
+		return (0);
+	return (1);
+}
+
+static short	new_trio(char *buf)
 {
 	short	res;
 	short	i;
 	short	imod;
+	short	len;
 
 	i = 0;
+	len = 0;
 	res = 0x0000;
 	while (i < BUF_SIZE)
 	{
 		imod = i % 5;
 		if ((imod == 4 && buf[i] != '\n')
-				|| (imod != 4 && (buf[i] != '.' || buf[i] != '#')))
+				|| (imod != 4 && buf[i] != '.' && buf[i] != '#'))
 			return (ERR);
 		if (buf[i] == '#')
+		{
+			if(check(buf, i))
+				return (ERR);
+			++len;
 			res |= (1 << (i - i/5));
+		}
 		++i;
 	}
+	if (len != 4)
+		return (ERR);
 	return (res);
 }
 
@@ -45,18 +69,17 @@ short		parser(int fd, short **tr)
 
 	len = 0;
 	rd = 1;
-	while ((rd = read(fd, buf, BUF_SIZE)) && rd)
+	while (rd && (rd = read(fd, buf, BUF_SIZE)))
 	{
 		if (rd != BUF_SIZE)
 			return (ERR);
 		buf[rd] = '\0';
-		*tr[len] = new_trio(buf);
-		if ((rd = read(fd, buf, 1)) && (rd == 0 || rd == ERR))
-			return (rd);
-		if (*tr[len] == -1 || buf[0] != '\n')
+		tr[0][len] = new_trio(buf);
+		if (tr[0][len] == ERR || (rd = read(fd, buf, 1)) == ERR
+				|| (rd && buf[0] != '\n'))
 			return (ERR);
 		++len;
 	}
-	*tr[len] = 0;
+	tr[0][len] = 0;
 	return (len);
 }

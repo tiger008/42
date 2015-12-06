@@ -16,26 +16,29 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	short	*t;
 	short	i;
 	int		fd;
 
-	fd = open("test", O_RDONLY);
-	t = (short *)malloc(sizeof(short) * 27);
-	i = 0;
-	if (parser(fd, &t) != -1)
+	if (argc == 2 && (fd = open(argv[1], O_RDONLY)) != -1)
 	{
-		while (t[i])
+		t = (short *)malloc(sizeof(short) * 27);
+		i = 0;
+		if (parser(fd, &t) != -1)
 		{
-			ft_putnbr((int)*t);
-			ft_putendl("");
-			i++;
+			while (t[i])
+			{
+				ft_putnbr((int)t[i]);
+				ft_putendl("");
+				i++;
+			}
 		}
+		else
+			ft_putendl("BAD file");
+		free(t);
+		close(fd);
 	}
-	else
-		ft_putendl("BAD file");
-	close(fd);
 	return (0);
 }
