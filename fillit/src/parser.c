@@ -16,6 +16,7 @@
 #include "fillit.h"
 #include "libft.h"
 
+/*
 static short	check(char *buf, short i)
 {
 	short	c;
@@ -30,6 +31,7 @@ static short	check(char *buf, short i)
 		return (0);
 	return (1);
 }
+*/
 
 static short	new_trio(char *buf)
 {
@@ -49,8 +51,10 @@ static short	new_trio(char *buf)
 			return (ERR);
 		if (buf[i] == '#')
 		{
+			/*
 			if(check(buf, i))
 				return (ERR);
+			*/
 			++len;
 			res |= (1 << (i - i/5));
 		}

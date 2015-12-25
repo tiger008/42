@@ -17,6 +17,8 @@ HEADERS = ./include
 LIB_HEADER = $(LIB)/include
 NAME = fillit
 SRC = \
+	  src/ft_trio.c \
+	  src/ft_search.c \
 	  src/parser.c \
 	  src/fillit.c
 

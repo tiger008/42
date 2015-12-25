@@ -19,24 +19,28 @@
 int	main(int argc, char **argv)
 {
 	short	*t;
+	short	tt[9] = I;
 	short	i;
 	int		fd;
 
 	if (argc == 2 && (fd = open(argv[1], O_RDONLY)) != -1)
 	{
-		t = (short *)malloc(sizeof(short) * 27);
+		t = (short *)malloc(sizeof(short) * 114);
 		i = 0;
 		if (parser(fd, &t) != -1)
 		{
 			while (t[i])
 			{
-				ft_putnbr((int)t[i]);
-				ft_putendl("");
+				if (!(t[i] = ft_trio(t[i])))
+				{
+					ft_putendl("error");
+					break;
+				}
 				i++;
 			}
 		}
 		else
-			ft_putendl("BAD file");
+			ft_putendl("error");
 		free(t);
 		close(fd);
 	}
