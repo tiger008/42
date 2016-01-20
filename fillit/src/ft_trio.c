@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-short	ft_trio(short x)
+short	ft_trio(short *x)
 {
 	short	*t;
 	short	trio;

@@ -33,39 +33,35 @@ static short	check(char *buf, short i)
 }
 */
 
-static short	new_trio(char *buf)
+static short	*new_trio(char *buf)
 {
-	short	res;
+	short	*res;
 	short	i;
 	short	imod;
 	short	len;
 
 	i = 0;
 	len = 0;
-	res = 0x0000;
+	res = (short *)malloc(sizeof(short) * 3);
 	while (i < BUF_SIZE)
 	{
 		imod = i % 5;
 		if ((imod == 4 && buf[i] != '\n')
 				|| (imod != 4 && buf[i] != '.' && buf[i] != '#'))
-			return (ERR);
+			return (NULL);
 		if (buf[i] == '#')
 		{
-			/*
-			if(check(buf, i))
-				return (ERR);
-			*/
+			res[len] = 
 			++len;
-			res |= (1 << (i - i/5));
 		}
 		++i;
 	}
 	if (len != 4)
-		return (ERR);
+		return (NULL);
 	return (res);
 }
 
-short		parser(int fd, short **tr)
+short		parser(int fd, short ***tr)
 {
 	char	buf[BUF_SIZE + 1];
 	ssize_t	rd;
@@ -78,12 +74,11 @@ short		parser(int fd, short **tr)
 		if (rd != BUF_SIZE)
 			return (ERR);
 		buf[rd] = '\0';
-		tr[0][len] = new_trio(buf);
-		if (tr[0][len] == ERR || (rd = read(fd, buf, 1)) == ERR
+		(*tr)[0][len] = new_trio(buf);
+		if ((*tr)[0][len] == NULL || (rd = read(fd, buf, 1)) == ERR
 				|| (rd && buf[0] != '\n'))
 			return (ERR);
 		++len;
 	}
-	tr[0][len] = 0;
 	return (len);
 }

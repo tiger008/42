@@ -18,30 +18,29 @@
 
 int	main(int argc, char **argv)
 {
-	short	*t;
-	short	tt[9] = I;
+	t_trio	*t;
 	short	i;
 	int		fd;
 
 	if (argc == 2 && (fd = open(argv[1], O_RDONLY)) != -1)
 	{
-		t = (short *)malloc(sizeof(short) * 114);
+		t = (t_trio *)malloc(sizeof(t_trio) * MAX_TRIO);
 		i = 0;
 		if (parser(fd, &t) != -1)
 		{
-			while (t[i])
+			while (i < MAX_TRIO)
 			{
-				if (!(t[i] = ft_trio(t[i])))
+				if (!ft_trio(t[i]))
 				{
 					ft_putendl("error");
 					break;
 				}
-				i++;
+				++i;
 			}
 		}
 		else
 			ft_putendl("error");
-		free(t);
+		ft_mfree(&t);
 		close(fd);
 	}
 	return (0);

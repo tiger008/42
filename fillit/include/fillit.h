@@ -14,6 +14,7 @@
 # define FILLIT_H
 # define BUF_SIZE 20
 # define ERR -1
+# define MAX_TRIO 26
 # define I {-30584, 4369, 8738, 17476}
 # define I_h {-4096, 15, 240, 3840}
 # define J {-14208, 802, 1604, 3208, 12832, 25664}
@@ -33,7 +34,18 @@
 # define T_rd {-29568, 562, 1124, 2248, 8992, 17984}
 # define T_rg {305, 610, 1220, 4880, 9760, 19520}
 # define O {-13312, 51, 102, 204, 816, 1632, 3264, 13056, 26112}
-short	parser(int fd, short **tr);
+
+typedef struct	s_pt
+{
+	short	x;
+	short	y;
+}				t_pt;
+typedef struct	s_trio
+{
+	t_pt	t[3];
+}				t_trio;
+short	parser(int fd, t_trio **tr);
 short	ft_search(short val, short *t, short size);
-short	ft_trio(short x);
+short	ft_trio(short *x);
+
 #endif
