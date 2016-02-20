@@ -17,7 +17,7 @@ HEADERS = ./include
 LIB_HEADER = $(LIB)/include
 NAME = fillit
 SRC = \
-	  src/main.c
+	  src/ft_parser.c
 
 OBJ = $(SRC:.c=.o)
 
