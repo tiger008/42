@@ -1,0 +1,131 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/02/23 11:56:38 by tperraut          #+#    #+#             */
+/*   Updated: 2016/02/23 20:56:49 by tperraut         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fillit.h"
+#include "libft.h"
+
+#include <unistd.h>
+#include <stdlib.h>
+
+static int	check(int sharp, int x, int y, char c)
+{
+	if (sharp > 4
+			|| x > 4
+			|| y > 4
+			|| (x != 4 && c != '#' && c != '.')
+			|| (x == 4 && c != '\n'))
+		return (1);
+	return (0);
+}
+
+static int	new_trio(char *buf, t_trio *t)
+{
+	t_pt	ogn;
+	t_pt	curs;
+	int		sharp;
+
+	ft_pset(&curs, 0, 0);
+	sharp = 0;
+	while (*buf)
+	{
+		ft_putchar(*buf);
+		if (check(sharp, curs.x, curs.y, *buf))
+			return (ER);
+		if (*buf == '#')
+		{
+			if (sharp == 0)
+				ft_pset(&ogn, curs.x, curs.y);
+			else
+				ft_pset(&(t->a_tab[sharp - 1]), curs.x - ogn.x, curs.y - ogn.y);
+			++sharp;
+		}
+		if (curs.x == 4 && ++curs.y)
+			curs.x = 0;
+		else
+			++curs.x;
+		++buf;
+	}
+	return ((sharp == 4) ? 0 : ER);
+}
+
+static int	pt_link(t_pt p1, t_pt p2)
+{
+	if ((p1.x == p2.x && (p1.y - 1 == p2.y || p1.y + 1 == p2.y))
+			|| (p1.y == p2.y && (p1.x - 1 == p2.x || p1.x + 1 == p2.x)))
+			return (1);
+	return (0);
+}
+
+static int	trio_check(t_trio t)
+{
+	t_pt	p;
+	int		a[4];
+	int		i;
+
+	ft_pset(&p, 0, 0);
+	a[1] = pt_link(p, t.a_tab[0]);
+	a[2] = pt_link(p, t.a_tab[1]);
+	a[3] = pt_link(p, t.a_tab[2]);
+	a[0] = a[1] + a[2] + a[3];
+	if (a[0] && a[0] < 3)
+	{
+		i = pt_link(t.a_tab[0], t.a_tab[1]);
+		a[2] += i;
+		a[1] += i;
+		i = pt_link(t.a_tab[0], t.a_tab[2]);
+		a[2] += i;
+		a[1] += i;
+	}
+	if (a[1] && a[1] < 3)
+	{
+		i = pt_link(t.a_tab[1], t.a_tab[2]);
+		a[2] += i;
+		a[3] += i;
+	}
+	return (!(a[0] && a[1] && a[2] && a[3]));
+}
+
+int			parser(int fd, t_trio **pa_trio)
+{
+	char	buf[BUF_SIZE + 1];
+	ssize_t	rd;
+	int		len;
+	int		i;
+	t_trio	*a_trio;
+
+	len = 0;
+	rd = 1;
+	if ((a_trio = (t_trio *)malloc(sizeof(t_trio) * MAX_TRIO)) == NULL)
+		return (ER);
+	while (rd && (rd = read(fd, buf, BUF_SIZE)))
+	{
+		if (rd != BUF_SIZE || len == MAX_TRIO)
+			return (ER);
+		buf[rd] = '\0';
+		if ((new_trio(buf, &(a_trio[len]))) == ER
+				|| (rd = read(fd, buf, 1)) == ER
+				|| (rd && buf[0] != '\n')
+				|| (rd && trio_check(a_trio[len])))
+			return (ER);
+		++len;
+		ft_putendl("");
+		i = 0;
+		while (i < 3)
+		{
+			ft_putpt(a_trio[len].a_tab[i]);
+			ft_putendl("");
+			i++;
+		}
+	}
+	*pa_trio = a_trio;
+	return (len);
+}
