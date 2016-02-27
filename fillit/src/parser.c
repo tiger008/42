@@ -37,7 +37,6 @@ static int	new_trio(char *buf, t_trio *t)
 	sharp = 0;
 	while (*buf)
 	{
-		ft_putchar(*buf);
 		if (check(sharp, curs.x, curs.y, *buf))
 			return (ER);
 		if (*buf == '#')
@@ -61,15 +60,16 @@ static int	pt_link(t_pt p1, t_pt p2)
 {
 	if ((p1.x == p2.x && (p1.y - 1 == p2.y || p1.y + 1 == p2.y))
 			|| (p1.y == p2.y && (p1.x - 1 == p2.x || p1.x + 1 == p2.x)))
-			return (1);
+		return (1);
 	return (0);
 }
-
+/*
+** a[4] is an independant variable
+*/
 static int	trio_check(t_trio t)
 {
 	t_pt	p;
-	int		a[4];
-	int		i;
+	int		a[5];
 
 	ft_pset(&p, 0, 0);
 	a[1] = pt_link(p, t.a_tab[0]);
@@ -78,20 +78,21 @@ static int	trio_check(t_trio t)
 	a[0] = a[1] + a[2] + a[3];
 	if (a[0] && a[0] < 3)
 	{
-		i = pt_link(t.a_tab[0], t.a_tab[1]);
-		a[2] += i;
-		a[1] += i;
-		i = pt_link(t.a_tab[0], t.a_tab[2]);
-		a[2] += i;
-		a[1] += i;
+		a[4] = pt_link(t.a_tab[0], t.a_tab[1]);
+		a[2] += a[4];
+		a[1] += a[4];
+		a[4] = pt_link(t.a_tab[0], t.a_tab[2]);
+		a[3] += a[4];
+		a[1] += a[4];
 	}
 	if (a[1] && a[1] < 3)
 	{
-		i = pt_link(t.a_tab[1], t.a_tab[2]);
-		a[2] += i;
-		a[3] += i;
+		a[4] = pt_link(t.a_tab[1], t.a_tab[2]);
+		a[2] += a[4];
+		a[3] += a[4];
 	}
-	return (!(a[0] && a[1] && a[2] && a[3]));
+	return (!(a[0] && a[1] && a[2] && a[3]
+			&& (a[0] > 1 || a[1] > 1 || a[2] > 1 || a[3] > 1)));
 }
 
 int			parser(int fd, t_trio **pa_trio)
@@ -99,7 +100,6 @@ int			parser(int fd, t_trio **pa_trio)
 	char	buf[BUF_SIZE + 1];
 	ssize_t	rd;
 	int		len;
-	int		i;
 	t_trio	*a_trio;
 
 	len = 0;
@@ -114,17 +114,9 @@ int			parser(int fd, t_trio **pa_trio)
 		if ((new_trio(buf, &(a_trio[len]))) == ER
 				|| (rd = read(fd, buf, 1)) == ER
 				|| (rd && buf[0] != '\n')
-				|| (rd && trio_check(a_trio[len])))
+				|| trio_check(a_trio[len]))
 			return (ER);
 		++len;
-		ft_putendl("");
-		i = 0;
-		while (i < 3)
-		{
-			ft_putpt(a_trio[len].a_tab[i]);
-			ft_putendl("");
-			i++;
-		}
 	}
 	*pa_trio = a_trio;
 	return (len);
