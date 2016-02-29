@@ -30,4 +30,7 @@ typedef struct	s_trio
 int				parser(int fd, t_trio **pa_trio);
 void			ft_pset(t_pt *p, int x, int y);
 void			ft_putpt(t_pt p);
+int				ft_sqrt(int n);
+char			**ft_create_mat(int n);
+void			ft_free_mat(char ***a, int n);
 #endif

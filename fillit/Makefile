@@ -17,8 +17,11 @@ HEADERS = ./include
 LIB_HEADER = $(LIB)/include
 NAME = fillit
 SRC = \
-	  src/ft_putpt.c\
-	  src/ft_pset.c\
+	  src/ft_free_mat.c \
+	  src/ft_create_mat.c \
+	  src/ft_sqrt.c \
+	  src/ft_putpt.c \
+	  src/ft_pset.c \
 	  src/parser.c \
 	  src/main.c
 

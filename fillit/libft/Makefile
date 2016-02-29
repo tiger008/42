@@ -16,7 +16,8 @@ LIB = ar rc
 HEADERS = ./include/
 NAME = libft.a
 MAIN = ../main/test.c
-SRC = src/ft_atoi.c \
+SRC = src/ft_abs.c \
+	src/ft_atoi.c \
 	src/ft_bzero.c \
 	src/ft_isalnum.c \
 	src/ft_isalpha.c \
