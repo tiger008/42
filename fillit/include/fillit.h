@@ -15,8 +15,10 @@
 # define BUF_SIZE 20
 # define ER -1
 # define MAX_TRIO 26
-# define BAD_X -1
-# define BAD_Y -2
+# define UP_X -1
+# define UP_Y -2
+# define DOWN_X -3
+# define DOWN_Y -4
 # define CONFLICT 0
 # define ACCEPT 1
 
@@ -29,6 +31,7 @@ typedef struct	s_pt
 typedef struct	s_trio
 {
 	t_pt	a_tab[3];
+	char	lt;
 }				t_trio;
 
 int				parser(int fd, t_trio **pa_trio);
@@ -40,6 +43,7 @@ void			ft_free_mat(char ***a, int n);
 void			ft_remove_trio(t_trio t, char ***pa_sq, t_pt p);
 void			ft_add_trio(t_trio t, char ***pa_sq, t_pt p, char c);
 void			ft_affiche(char **sq);
-char			**ft_resolve(t_trio *a_t, int size);
+char			**ft_resolve(t_trio **pa_t, int size);
+int				ft_next_perm(t_trio **pa_t, int len);
 
 #endif

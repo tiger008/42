@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 			if ((len = parser(fd, &a_trio)) == ER || len == 0)
 				ft_putendl("error");
 			else
-				ft_affiche(ft_resolve(a_trio, len));
+				ft_affiche(ft_resolve(&a_trio, len));
 		}
 		else
 			ft_putendl("error");

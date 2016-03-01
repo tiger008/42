@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-char		**ft_resolve(t_trio *a_t, int size)
+char		**ft_resolve(t_trio **pa_t, int size)
 {
 	int		sq_size;
 	char	**a_sq;
@@ -10,7 +10,7 @@ char		**ft_resolve(t_trio *a_t, int size)
 		++sq_size;
 	a_sq = ft_create_mat(sq_size);
 	/*TEST*/
-	if (a_t)
+	if (pa_t)
 		return (a_sq);
 	return (a_sq);
 	/*TEST*/

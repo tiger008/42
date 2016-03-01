@@ -116,6 +116,7 @@ int			parser(int fd, t_trio **pa_trio)
 				|| (rd && buf[0] != '\n')
 				|| trio_check(a_trio[len]))
 			return (ER);
+		a_trio[len].lt = 'A' + len;
 		++len;
 	}
 	*pa_trio = a_trio;
