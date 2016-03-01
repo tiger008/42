@@ -9,4 +9,9 @@ char		**ft_resolve(t_trio *a_t, int size)
 	if (sq_size * sq_size < size * 4)
 		++sq_size;
 	a_sq = ft_create_mat(sq_size);
+	/*TEST*/
+	if (a_t)
+		return (a_sq);
+	return (a_sq);
+	/*TEST*/
 }

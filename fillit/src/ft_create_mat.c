@@ -7,6 +7,7 @@ char	**ft_create_mat(int n)
 	char	**a;
 	int		i;
 	int		j;
+	int		k;
 
 	i = 0;
 	j = 0;
@@ -19,7 +20,10 @@ char	**ft_create_mat(int n)
 			ft_free_mat(&a, j);
 			return (NULL);
 		}
-		a[i][n] = '\0';
+		k = 0;
+		while(k < n)
+			a[i][k++] = '.';
+		a[i][k] = '\0';
 		++j;
 		++i;
 	}

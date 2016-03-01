@@ -17,6 +17,10 @@ HEADERS = ./include
 LIB_HEADER = $(LIB)/include
 NAME = fillit
 SRC = \
+	  src/ft_resolve.c \
+	  src/ft_affiche.c \
+	  src/ft_add_trio.c \
+	  src/ft_remove_trio.c \
 	  src/ft_free_mat.c \
 	  src/ft_create_mat.c \
 	  src/ft_sqrt.c \
@@ -50,7 +54,7 @@ norme: $(SRC)
 	make norme -C $(LIB)
 	norminette $^ $(HEADERS)libft.h
 
-tclean:
-	rm -f libft.so
+ficlean:
+	rm -f $(OBJ)
 
 retest: tclean test

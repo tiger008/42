@@ -15,6 +15,10 @@
 # define BUF_SIZE 20
 # define ER -1
 # define MAX_TRIO 26
+# define BAD_X -1
+# define BAD_Y -2
+# define CONFLICT 0
+# define ACCEPT 1
 
 typedef struct	s_pt
 {
@@ -33,4 +37,9 @@ void			ft_putpt(t_pt p);
 int				ft_sqrt(int n);
 char			**ft_create_mat(int n);
 void			ft_free_mat(char ***a, int n);
+void			ft_remove_trio(t_trio t, char ***pa_sq, t_pt p);
+void			ft_add_trio(t_trio t, char ***pa_sq, t_pt p, char c);
+void			ft_affiche(char **sq);
+char			**ft_resolve(t_trio *a_t, int size);
+
 #endif
