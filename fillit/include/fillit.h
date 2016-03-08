@@ -15,12 +15,18 @@
 # define BUF_SIZE 20
 # define ER -1
 # define MAX_TRIO 26
-# define UP_X -1
+/*# define UP_X -1
 # define UP_Y -2
 # define DOWN_X -3
 # define DOWN_Y -4
 # define CONFLICT 0
 # define ACCEPT 1
+*/
+
+typedef enum	e_tr
+{
+	ACCEPT, CONFLICT, UP_X, UP_Y, DOWN_X, DOWN_Y
+}				e_tr;
 
 typedef struct	s_pt
 {
@@ -41,9 +47,10 @@ int				ft_sqrt(int n);
 char			**ft_create_mat(int n);
 void			ft_free_mat(char ***a, int n);
 void			ft_remove_trio(t_trio t, char ***pa_sq, t_pt p);
-void			ft_add_trio(t_trio t, char ***pa_sq, t_pt p, char c);
+void			ft_add_trio(t_trio t, char ***pa_sq, t_pt p);
 void			ft_affiche(char **sq);
-char			**ft_resolve(t_trio **pa_t, int size);
+char			**ft_resolve(t_trio *a_t, int size, int *sq_size);
 int				ft_next_perm(t_trio **pa_t, int len);
+e_tr			ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size);
 
 #endif

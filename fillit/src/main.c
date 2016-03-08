@@ -15,16 +15,26 @@
 
 #include <fcntl.h>
 
-/*
-**TODO
-**ft_resolve
-*/
+static void sq_init(int *sq_size, int size)
+{
+	*sq_size = ft_sqrt(size * 4);
+	if (*sq_size * *sq_size < size * 4)
+		++*sq_size;
+}
 
+static void freetwo(char ***p_sol, t_trio **pa_trio, int sq_size)
+{
+	if (*p_sol)
+		ft_free_mat(p_sol, sq_size + 1);
+	free(*pa_trio);
+}
 int		main(int argc, char **argv)
 {
 	int		fd;
 	int		len;
 	t_trio	*a_trio;
+	char	**sol;
+	int		sq_size;
 
 	if (argc == 2)
 	{
@@ -33,7 +43,12 @@ int		main(int argc, char **argv)
 			if ((len = parser(fd, &a_trio)) == ER || len == 0)
 				ft_putendl("error");
 			else
-				ft_affiche(ft_resolve(&a_trio, len));
+			{
+				sq_init(&sq_size, len);
+				sol = ft_resolve(a_trio, len, &sq_size);
+				ft_affiche(sol);
+				freetwo(&sol, &a_trio, sq_size);
+			}
 		}
 		else
 			ft_putendl("error");

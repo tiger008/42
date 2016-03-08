@@ -17,6 +17,7 @@ HEADERS = ./include
 LIB_HEADER = $(LIB)/include
 NAME = fillit
 SRC = \
+	  src/ft_accept.c \
 	  src/ft_next_perm.c \
 	  src/ft_resolve.c \
 	  src/ft_affiche.c \
