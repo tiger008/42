@@ -35,8 +35,7 @@ char		**ft_resolve(t_trio *a_t, int size, int *sq_size)
 				i = 0;
 				ft_free_mat(&a_sq, ++*sq_size);
 				a_sq = ft_create_mat(*sq_size);
-			ft_pset(&pt, 0, 0);
-			ft_pset(&pt, 0, 0);
+				ft_pset(&pt, 0, 0);
 			}
 			else
 			{
