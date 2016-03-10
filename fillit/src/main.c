@@ -38,17 +38,14 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		if ((fd = open(argv[1], O_RDONLY)) != ER)
+		if ((fd = open(argv[1], O_RDONLY)) != ER
+				&& (len = parser(fd, &a_trio)) != ER
+				&& len != 0)
 		{
-			if ((len = parser(fd, &a_trio)) == ER || len == 0)
-				ft_putendl("error");
-			else
-			{
-				sq_init(&sq_size, len);
-				sol = ft_resolve(a_trio, len, &sq_size);
+			sq_init(&sq_size, len);
+			if ((sol = ft_resolve(a_trio, len, &sq_size, 0)) != NULL)
 				ft_affiche(sol);
-				freetwo(&sol, &a_trio, sq_size);
-			}
+			freetwo(&sol, &a_trio, sq_size);
 		}
 		else
 			ft_putendl("error");
