@@ -49,7 +49,7 @@ void			ft_free_mat(char ***a, int n);
 void			ft_remove_trio(t_trio t, char ***pa_sq, t_pt p);
 void			ft_add_trio(t_trio t, char ***pa_sq, t_pt p);
 void			ft_affiche(char **sq);
-char			**ft_resolve(t_trio *a_t, int size, int *sq_size);
+char			**ft_resolve(t_trio *a_t, int size, int *sq_size, int i);
 int				ft_next_perm(t_trio **pa_t, int len);
 e_tr			ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size);
 
