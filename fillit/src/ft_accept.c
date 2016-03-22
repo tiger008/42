@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_accept.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/22 09:25:11 by tperraut          #+#    #+#             */
+/*   Updated: 2016/03/22 09:33:58 by tperraut         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 static void	add_pt(t_pt *p_pt, t_pt p1, t_pt p2)
@@ -46,19 +58,10 @@ static int	lt(t_pt a_pt[3], int size, int mod)
 			++i;
 		}
 	}
-	else
-	{
-		while (i < 3)
-		{
-			if (a_pt[i].y < size)
-				return (1);
-			++i;
-		}
-	}
 	return (0);
 }
 
-e_tr		ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size)
+t_tr		ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size)
 {
 	t_pt	a_pt[3];
 	int		i;
@@ -71,12 +74,10 @@ e_tr		ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size)
 		return (UP_Y);
 	if (pt.x >= sq_size || gtoe(a_pt, sq_size, 0))
 		return (UP_X);
-	if (pt.y < 0 || lt(a_pt, 0, 1))
-		return (DOWN_Y);
 	if (pt.x < 0 || lt(a_pt, 0, 0))
 		return (DOWN_X);
 	if (a_sq[pt.y][pt.x] != '.')
-			return (CONFLICT);
+		return (CONFLICT);
 	while (i < 3)
 	{
 		if (a_sq[a_pt[i].y][a_pt[i].x] != '.')

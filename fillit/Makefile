@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#    Updated: 2016/02/23 20:48:06 by tperraut         ###   ########.fr        #
+#    Updated: 2016/03/22 09:45:03 by tperraut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-norme: $(SRC)
-	make norme -C $(LIB)
-	norminette $^ $(HEADERS)libft.h
-
-ficlean:
-	rm -f $(OBJ)
-
-retest: tclean test

@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 11:56:38 by tperraut          #+#    #+#             */
-/*   Updated: 2016/02/23 20:56:49 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/03/22 09:39:06 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ static int	pt_link(t_pt p1, t_pt p2)
 		return (1);
 	return (0);
 }
+
 /*
 ** a[4] is an independant variable
 */
+
 static int	trio_check(t_trio t)
 {
 	t_pt	p;
@@ -92,7 +94,7 @@ static int	trio_check(t_trio t)
 		a[3] += a[4];
 	}
 	return (!(a[0] && a[1] && a[2] && a[3]
-			&& (a[0] > 1 || a[1] > 1 || a[2] > 1 || a[3] > 1)));
+				&& (a[0] > 1 || a[1] > 1 || a[2] > 1 || a[3] > 1)));
 }
 
 int			parser(int fd, t_trio **pa_trio)

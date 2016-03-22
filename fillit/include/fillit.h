@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 11:54:41 by tperraut          #+#    #+#             */
-/*   Updated: 2016/02/23 20:47:26 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/03/22 09:28:34 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,11 @@
 # define BUF_SIZE 20
 # define ER -1
 # define MAX_TRIO 26
-/*# define UP_X -1
-# define UP_Y -2
-# define DOWN_X -3
-# define DOWN_Y -4
-# define CONFLICT 0
-# define ACCEPT 1
-*/
 
 typedef enum	e_tr
 {
-	ACCEPT, CONFLICT, UP_X, UP_Y, DOWN_X, DOWN_Y
-}				e_tr;
+	ACCEPT, CONFLICT, UP_X, UP_Y, DOWN_X
+}				t_tr;
 
 typedef struct	s_pt
 {
@@ -51,6 +44,6 @@ void			ft_add_trio(t_trio t, char ***pa_sq, t_pt p);
 void			ft_affiche(char **sq);
 char			**ft_resolve(t_trio *a_t, int size, int *sq_size, int i);
 int				ft_next_perm(t_trio **pa_t, int len);
-e_tr			ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size);
+t_tr			ft_accept(t_trio t, char **a_sq, t_pt pt, int sq_size);
 
 #endif
