@@ -14,15 +14,15 @@
 
 int	ft_sqrt(int n)
 {
-	int	sq;
-	int	tmp;
+	float	sq;
+	float	tmp;
 
-	tmp = 1;
-	sq = (int)(0.5 * (1 + n));
-	while (ft_abs(sq - tmp) > 0)
+	tmp = 1.0;
+	sq = 0.5 * (1 + n);
+	while (ABS(sq - tmp) > 0.001)
 	{
 		tmp = sq;
-		sq = (int)(0.5 * (tmp + n / tmp));
+		sq = (0.5 * (tmp + n / tmp));
 	}
-	return (sq);
+	return ((int)sq);
 }
