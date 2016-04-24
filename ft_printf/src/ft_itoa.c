@@ -12,16 +12,16 @@
 
 #include <stdlib.h>
 
-static int	ft_nbdigit(int n, int *div)
+#include "libft.h"
+
+static int	ft_nbdigit(int n)
 {
 	int	digit;
 
 	digit = 1;
-	*div = 1;
 	while (n > 9)
 	{
 		n = n / 10;
-		*div *= 10;
 		++digit;
 	}
 	return (digit);
@@ -30,27 +30,26 @@ static int	ft_nbdigit(int n, int *div)
 char		*ft_itoa(int n)
 {
 	char	*result;
-	int		i;
+	int		neg;
 	int		digit;
-	int		div;
 
-	digit = ft_nbdigit(n, &div);
-	i = 0;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	neg = (n < 0) ? 1 : 0;
+	n = (n < 0) ? -n : n;
+	digit = ft_nbdigit(n);
 	if (!(result = (char*)malloc(sizeof(char) * (digit + ((n < 0) ? 2 : 1)))))
 		return (NULL);
-	if (n == -2147483648)
-		result = "-2147483648";
 	else
 	{
-		n = (n < 0) ? -n : n;
-		while (digit)
+		if (neg)
+			result[0] = '-';
+		result[digit] = '\0';
+		while (digit--)
 		{
-			result[i] = (int)('0' + ((n / div) % 10));
-			div /= 10;
-			digit--;
-			++i;
+			result[digit + neg] = (int)('0' + n % 10);
+			n /= 10;
 		}
-		result[i] = '\0';
 	}
 	return (result);
 }

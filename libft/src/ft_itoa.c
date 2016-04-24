@@ -10,59 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-static int	ft_nbdigit(int n)
+static int	ft_nbdigit(int n, int *div)
 {
 	int	digit;
 
-	digit = 0;
-	if (n == 0)
-		return (1);
-	while (n)
+	digit = 1;
+	*div = 1;
+	while (n > 9)
 	{
 		n = n / 10;
-		digit++;
+		*div *= 10;
+		++digit;
 	}
 	return (digit);
 }
 
-static int	ft_tenpower(int power)
-{
-	int	result;
-	int	i;
-
-	i = 0;
-	result = 1;
-	while (i++ < power)
-		result = result * 10;
-	return (result);
-}
-
 char		*ft_itoa(int n)
 {
-	char			*result;
-	unsigned int	nn;
-	size_t			i;
-	int				digit;
+	char	*result;
+	int		i;
+	int		digit;
+	int		div;
 
-	digit = ft_nbdigit(n);
+	digit = ft_nbdigit(n, &div);
 	i = 0;
-	result = (char*)malloc(sizeof(char) * (digit + 2));
-	if (!result)
+	if (!(result = (char*)malloc(sizeof(char) * (digit + ((n < 0) ? 2 : 1)))))
 		return (NULL);
-	if (n < 0)
-	{
-		result[i++] = '-';
-		nn = (unsigned int)-n;
-	}
+	if (n == -2147483648)
+		result = "-2147483648";
 	else
-		nn = (unsigned int)n;
-	while (digit)
 	{
-		result[i++] = '0' + (char)((nn / ft_tenpower(digit - 1)) % 10);
-		digit--;
+		n = (n < 0) ? -n : n;
+		while (digit)
+		{
+			result[i] = (int)('0' + ((n / div) % 10));
+			div /= 10;
+			digit--;
+			++i;
+		}
+		result[i] = '\0';
 	}
-	result[i] = '\0';
 	return (result);
 }
