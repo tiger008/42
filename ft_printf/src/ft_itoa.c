@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 16:10:05 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/26 12:53:51 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/04/25 01:45:07 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_nbdigit(int n)
 
 char		*ft_itoa(int n)
 {
-	char	*result;
+	char	*str;
 	int		neg;
 	int		digit;
 
@@ -38,18 +38,18 @@ char		*ft_itoa(int n)
 	neg = (n < 0) ? 1 : 0;
 	n = (n < 0) ? -n : n;
 	digit = ft_nbdigit(n);
-	if (!(result = (char*)malloc(sizeof(char) * (digit + ((n < 0) ? 2 : 1)))))
+	if (!(str = (char*)malloc(sizeof(char) * (digit + ((n < 0) ? 2 : 1)))))
 		return (NULL);
 	else
 	{
 		if (neg)
-			result[0] = '-';
-		result[digit] = '\0';
+			str[0] = '-';
+		str[digit] = '\0';
 		while (digit--)
 		{
-			result[digit + neg] = (int)('0' + n % 10);
+			str[digit + neg] = (int)('0' + n % 10);
 			n /= 10;
 		}
 	}
-	return (result);
+	return (str);
 }
