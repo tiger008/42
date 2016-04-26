@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/23 23:50:11 by tperraut          #+#    #+#             */
-/*   Updated: 2016/04/26 16:24:37 by tperraut         ###   ########.fr       */
+/*   Created: 2016/04/26 16:22:02 by tperraut          #+#    #+#             */
+/*   Updated: 2016/04/26 16:23:05 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
+#ifndef LIBFTPRINTF_H
 
-#include "libftprintf.h"
+# include <string.h>
+# define LIBFTPRINTF_H
+# define TRUE 1
+# define FALSE 0
+# define ABS(X) (X < 0) ? -X : X
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	ap;
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_itoa(int n);
+void	ft_putchar(char c);
+void	ft_putstr(char const *s);
+int		ft_printf(const char *format, ...);
 
-	va_start(ap, format);
-	return (1);
-}
+#endif
