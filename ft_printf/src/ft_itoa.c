@@ -6,13 +6,13 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 16:10:05 by tperraut          #+#    #+#             */
-/*   Updated: 2016/04/25 01:45:07 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/04/26 16:21:18 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-#include "libft.h"
+#include "libftprintf.h"
 
 static int	ft_nbdigit(int n)
 {

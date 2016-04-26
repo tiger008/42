@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/25 01:53:13 by tperraut          #+#    #+#             */
-/*   Updated: 2016/04/26 16:24:08 by tperraut         ###   ########.fr       */
+/*   Created: 2016/04/26 16:22:02 by tperraut          #+#    #+#             */
+/*   Updated: 2016/04/26 16:23:05 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef LIBFTPRINTF_H
 
-#include "libftprintf.h"
+# include <string.h>
+# define LIBFTPRINTF_H
+# define TRUE 1
+# define FALSE 0
+# define ABS(X) (X < 0) ? -X : X
 
-char	*ft_strdup(const char *s1)
-{
-	char	*dst;
-	size_t	len;
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_itoa(int n);
+void	ft_putchar(char c);
+void	ft_putstr(char const *s);
+int		ft_printf(const char *format, ...);
 
-	if (s1 == NULL)
-		return (NULL);
-	len = ft_strlen(s1);
-	dst = (char*)malloc(sizeof(char) * (len + 1));
-	if (dst == NULL)
-		return (NULL);
-	dst[len] = '\0';
-	while (len--)
-	{
-		dst[len] = s1[len];
-	}
-	return (dst);
-}
+#endif

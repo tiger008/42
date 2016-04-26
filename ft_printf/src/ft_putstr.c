@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 15:39:31 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/04 15:43:03 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/04/26 16:23:31 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-#include "printf.h"
+#include "libftprintf.h"
 
 void	ft_putstr(char const *s)
 {

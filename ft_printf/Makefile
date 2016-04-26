@@ -17,13 +17,13 @@ HEADERS = ./include/
 NAME = libftprintf.a
 MAIN = ../main/test.c
 SRC = \
-	src/ft_putchar.c \
 	src/ft_putstr.c \
 	src/ft_strlen.c \
 	src/ft_strdup.c \
-	src/ft_strcmp.c \
 	src/ft_itoa.c \
-	src/ft_printf.cx
+	src/ft_printf.c #\
+	src/ft_strcmp.c \
+	src/ft_putchar.c
 
 OBJ = $(SRC:.c=.o)
 
