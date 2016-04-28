@@ -6,7 +6,7 @@
 #    By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#    Updated: 2016/04/25 02:13:49 by tperraut         ###   ########.fr        #
+#    Updated: 2016/04/28 20:58:50 by tperraut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ CFLAGS = -Wall -Werror -Wextra
 LIB = ar rc
 HEADERS = ./include/
 NAME = libftprintf.a
-MAIN = ../main/test.c
 SRC = \
 	src/ft_putstr.c \
 	src/ft_strlen.c \
@@ -45,16 +44,4 @@ fclean: clean
 re: fclean all
 
 norme: $(SRC)
-	norminette $^ $(HEADERS)libft.h
-
-test: all
-	@#$(CC) -fPIC $(CFLAGS) -o libft.so -shared $(SRC)
-	@#./Mouli-nator
-	rm -f libft.so
-	$(CC) $(CFLAGS) main.c -L./ -lft
-	./a.out
-
-tclean:
-	rm -f libft.so
-
-retest: tclean test
+	norminette $^ $(HEADERS)
