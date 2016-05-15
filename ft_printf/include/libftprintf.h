@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:22:02 by tperraut          #+#    #+#             */
-/*   Updated: 2016/04/28 21:00:47 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/04/30 18:54:43 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define LIBFTPRINTF_H
 # define TRUE 1
 # define FALSE 0
-# define ABS(X) (X < 0) ? -X : X
+# define BUF_SIZE 1024
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);

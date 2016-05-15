@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 23:50:11 by tperraut          #+#    #+#             */
-/*   Updated: 2016/04/28 21:32:54 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/01 18:01:00 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
+	char	buf[BUF_SIZ + 1];
 
 	va_start(ap, format);
 	return (1);
