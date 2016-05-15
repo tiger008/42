@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 16:10:05 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/26 12:53:51 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/04/26 16:21:18 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static int	ft_nbdigit(int n, int *div)
+#include "libftprintf.h"
+
+static int	ft_nbdigit(int n)
 {
 	int	digit;
 
 	digit = 1;
-	*div = 1;
 	while (n > 9)
 	{
 		n = n / 10;
-		*div *= 10;
 		++digit;
 	}
 	return (digit);
@@ -29,28 +29,27 @@ static int	ft_nbdigit(int n, int *div)
 
 char		*ft_itoa(int n)
 {
-	char	*result;
-	int		i;
+	char	*str;
+	int		neg;
 	int		digit;
-	int		div;
 
-	digit = ft_nbdigit(n, &div);
-	i = 0;
-	if (!(result = (char*)malloc(sizeof(char) * (digit + ((n < 0) ? 2 : 1)))))
-		return (NULL);
 	if (n == -2147483648)
-		result = "-2147483648";
+		return (ft_strdup("-2147483648"));
+	neg = (n < 0) ? 1 : 0;
+	n = (n < 0) ? -n : n;
+	digit = ft_nbdigit(n);
+	if (!(str = (char*)malloc(sizeof(char) * (digit + ((n < 0) ? 2 : 1)))))
+		return (NULL);
 	else
 	{
-		n = (n < 0) ? -n : n;
-		while (digit)
+		if (neg)
+			str[0] = '-';
+		str[digit] = '\0';
+		while (digit--)
 		{
-			result[i] = (int)('0' + ((n / div) % 10));
-			div /= 10;
-			digit--;
-			++i;
+			str[digit + neg] = (int)('0' + n % 10);
+			n /= 10;
 		}
-		result[i] = '\0';
 	}
-	return (result);
+	return (str);
 }

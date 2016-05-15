@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2015/04/09 11:37:32 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/03/22 15:01:45 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct	s_pt
 {
 	int		x;
 	int		y;
-}		t_pt;
+}				t_pt;
 
 typedef struct	s_iimg
 {
@@ -34,7 +34,7 @@ typedef struct	s_iimg
 	int		bpp;
 	int		sizeline;
 	int		endian;
-}		t_iimg;
+}				t_iimg;
 
 typedef	struct	s_env
 {
@@ -42,12 +42,14 @@ typedef	struct	s_env
 	void	*win;
 	void	*img;
 }				t_env;
+
 typedef	struct	s_grid
 {
 	int	*tab;
 	int	li;
 	int	co;
 }				t_grid;
-int		ft_parser(int fd, t_grid *grid);
-void	ft_initgrid(t_grid *grid);
+
+int				ft_parser(int fd, t_grid *grid);
+void			ft_initgrid(t_grid *grid);
 #endif

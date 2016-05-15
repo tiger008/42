@@ -6,7 +6,7 @@
 #    By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/04/06 23:50:57 by tperraut          #+#    #+#              #
-#    Updated: 2015/04/08 01:15:14 by tperraut         ###   ########.fr        #
+#    Updated: 2016/03/22 15:06:56 by tperraut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ CFLAGS = -Wall -Werror -Wextra -ggdb3
 LIBFT = ./libft/
 LIB = -L./libft/
 LIB += -lft
-LIB += -lX11
-LIB += -lXext
-LIBMLX = -L./mlx/ -lmlx
+#LIB += -lX11
+#LIB += -lXext
+LIBMLX = -lmlx
+#LIBMLX = -L./mlx/ -lmlx
 HEADER = ./include/
 LIBHEADER = ./libft/includes/
 NAME = fdf

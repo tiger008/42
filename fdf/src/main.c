@@ -6,14 +6,15 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/06 23:04:21 by tperraut          #+#    #+#             */
-/*   Updated: 2015/05/27 15:07:25 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/03/22 14:56:09 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
+
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "libft.h"
 #include <mlx.h>
 
 t_pt	p_init(int x, int y)
