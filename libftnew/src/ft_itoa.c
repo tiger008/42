@@ -6,11 +6,9 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 16:10:05 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/17 19:18:31 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/18 12:52:41 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
 
 #include "libft.h"
 
