@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = clang
-CFLAGS = -O3 -Werror -Wall -Wextra -fPIC
+CFLAGS = -O3 -Werror -Wall -Wextra
 LIB = ar rc
 HEADERS = ./include
 NAME = libft.a
@@ -82,7 +82,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(LIB) -o $@ $^
+	$(LIB) $@ $^
 	ranlib $@
 
 %.o: %.c
