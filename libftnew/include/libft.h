@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:34:39 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/19 22:29:05 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/21 16:30:25 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@
 # define CASE(x);			case x:
 # define INIT(t, n, v)		t n = v;
 
-# define RETURN_IF(x, y)	if (x) return (y);
+# define IF_RETURN(x, y)	if (x) return (y)
 
 /*
- ** ----------
- ** | MEMORY |
- ** ----------
- */
+** ----------
+** | MEMORY |
+** ----------
+*/
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -52,10 +52,10 @@ void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 
 /*
- ** --------
- ** | CHAR |
- ** --------
- */
+** --------
+** | CHAR |
+** --------
+*/
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -66,10 +66,10 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 
 /*
- ** ----------
- ** | STRING |
- ** ----------
- */
+** ----------
+** | STRING |
+** ----------
+*/
 
 size_t			ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
@@ -102,12 +102,11 @@ int				ft_atoi(const char *str);
 
 char			*ft_itoa(int n);
 
-
 /*
- ** ---------------
- ** | LINKED LIST |
- ** ---------------
- */
+** ---------------
+** | LINKED LIST |
+** ---------------
+*/
 
 typedef struct	s_list
 {
@@ -124,10 +123,10 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 /*
- ** -----------
- ** | DISPLAY |
- ** -----------
- */
+** -----------
+** | DISPLAY |
+** -----------
+*/
 
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
@@ -139,19 +138,19 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
 /*
- ** --------
- ** | MATH |
- ** --------
- */
+** --------
+** | MATH |
+** --------
+*/
 
 int				ft_abs(int n);
 int				ft_sqrt(int n);
 
-	/*
-	 ** ---------
-	 ** | DEBUG |
-	 ** ---------
-	 */
+/*
+** ---------
+** | DEBUG |
+** ---------
+*/
 
 void			ft_error(char const *s);
 
