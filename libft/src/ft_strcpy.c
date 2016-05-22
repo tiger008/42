@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 22:36:29 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/18 21:19:33 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/22 15:03:25 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 char	*ft_strcpy(char *dst, const char *src)
 {
-	size_t	i;
-	size_t	len;
+	char	*tmp;
 
-	i = 0;
-	if (!src || !dst)
-		return (NULL);
-	len = ft_strlen(src);
-	while (i < len)
+	tmp = dst;
+	while (*src)
 	{
-		dst[i] = src[i];
-		i++;
+		*tmp = *src;
+		tmp++;
+		src++;
 	}
-	dst[i] = src[i];
+	*tmp = *src;
 	return (dst);
 }
