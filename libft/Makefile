@@ -36,6 +36,9 @@ INC = -I ./include
 
 SRC_DIR = ./src/
 SRC_NAME = \
+	ft_delsplit.c \
+	ft_isreturn.c \
+	ft_isblank.c \
 	ft_abs.c \
 	ft_error.c \
 	ft_sqrt.c \
