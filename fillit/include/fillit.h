@@ -6,14 +6,13 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 11:54:41 by tperraut          #+#    #+#             */
-/*   Updated: 2016/03/22 09:28:34 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 14:32:47 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # define BUF_SIZE 20
-# define ER -1
 # define MAX_TRIO 26
 
 typedef enum	e_tr

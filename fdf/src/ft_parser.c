@@ -6,14 +6,15 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:53:37 by tperraut          #+#    #+#             */
-/*   Updated: 2015/05/27 13:24:58 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 14:13:27 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "get_next_line.h"
-#include <stdlib.h>
 #include "libft.h"
+
+#include <stdlib.h>
 
 static void	ft_freethree(char **one, int **two, int **three)
 {
@@ -40,14 +41,14 @@ static int	*ft_strtoint(char *line)
 		len++;
 	if (!(result = (int *)malloc(sizeof(int) * (len + 1))))
 	{
-		ft_strstrdel(splited);
+		ft_strdel(splited);
 		return (NULL);
 	}
 	i = 0;
 	while (splited[i++])
 		result[i] = ft_atoi(splited[i - 1]);
 	result[0] = len;
-	ft_strstrdel(splited);
+	ft_strdel(splited);
 	return (result);
 }
 

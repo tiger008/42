@@ -21,7 +21,7 @@ NAME = fillit
 ############
 
 CC = clang
-CFLAGS = -O3 -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 
 #######
 # LIB #
