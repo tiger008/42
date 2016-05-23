@@ -35,8 +35,14 @@ LIB_INC = -I $(LIB_DIR)/include
 # MLX #
 #######
 
-MLX = -lmlx -framework OpenGL -framework AppKit
-MLX_DIR = ./mlx
+SYS = linux
+FRAMEWORK =
+ifneq (, $(findstring apple, $(shell $(CC) -dumpmachine)))
+	SYS = mac
+	FRAMEWORK = -framework OpenGL -framework AppKit
+endif
+MLX = -lmlx $(FRAMEWORK)
+MLX_DIR = ./mlx-$(SYS)
 MLX_INC = -I $(MLX_DIR)/include
 
 ##########
