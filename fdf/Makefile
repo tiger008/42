@@ -3,51 +3,94 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+         #
+#    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/04/06 23:50:57 by tperraut          #+#    #+#              #
-#    Updated: 2016/03/22 15:06:56 by tperraut         ###   ########.fr        #
+#    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
+#*   Updated: 2016/05/19 23:38:02 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -ggdb3
-LIBFT = ./libft/
-LIB = -L./libft/
-LIB += -lft
-#LIB += -lX11
-#LIB += -lXext
-LIBMLX = -lmlx
-#LIBMLX = -L./mlx/ -lmlx
-HEADER = ./include/
-LIBHEADER = ./libft/includes/
-NAME = fdf
-SRC = \
-	src/ft_parser.c \
-	src/main.c \
-	src/ft_initgrid.c \
-	src/get_next_line.c
+##########
+# TARGET #
+##########
 
-OBJ = $(SRC:.c=.o)
+NAME = fdf
+
+############
+# COMPILER #
+############
+
+CC = clang
+CFLAGS = -O3 -Werror -Wall -Wextra
+
+#######
+# LIB #
+#######
+
+LIB = -lft
+LIB_DIR = ./libft
+LIB_INC = -I $(LIB_DIR)/include
+
+#######
+# MLX #
+#######
+
+MLX = -lmlx -framework OpenGL -framework AppKit
+MLX_DIR = ./mlx
+MLX_INC = -I $(MLX_DIR)/include
+
+##########
+# HEADER #
+##########
+
+INC = -I ./include
+
+##########
+# SOURCE #
+##########
+
+SRC_DIR = ./src/
+SRC_NAME = \
+	ft_parser.c \
+	ft_initgrid.c \
+	get_next_line.c \
+	main.c
+SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
+
+##########
+# OBJECT #
+##########
+
+OBJ_DIR = ./obj/
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_NAME))
+
+#########
+# RULES #
+#########
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIB) $(LIBMLX)
+	make -C $(LIB_DIR)
+	$(CC) $(CFLAGS) -o $@ \
+		$(OBJ) \
+		$(INC) \
+		$(LIB_INC) -L $(LIB_DIR) $(LIB) \
+		$(MLX_INC) -L $(MLX_DIR) $(MLX)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADER) -I $(LIBHEADER)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -o $@ -c $< $(LIB_INC) $(INC) $(MLX_INC)
 
 clean:
-	make clean -C $(LIBFT)
-	rm -f $(OBJ)
+	make clean -C $(LIB_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	make fclean -C $(LIBFT)
+	make fclean -C $(LIB_DIR)
 	rm -f $(NAME)
 
 re: fclean all
 
-norme: $(SRC)
-	norminette $^ $(HEADERS)*.h
+.PHONY: all clean fclean re
