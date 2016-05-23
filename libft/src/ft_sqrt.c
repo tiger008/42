@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 09:30:26 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/19 22:27:37 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 10:37:58 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 int	ft_sqrt(int n)
 {
-	float	sq;
-	float	tmp;
+	int	sq;
+	int	tmp;
+	int	y;
 
-	tmp = 1.0;
-	sq = 0.5 * (1 + (float)n);
-	while (ABS(sq - tmp) > 0.001)
+	y = 0;
+	tmp = 1;
+	sq = -1;
+	while (y <= n)
 	{
-		tmp = sq;
-		sq = (0.5 * (tmp + n / tmp));
+		y += tmp;
+		tmp += 2;
+		++n;
 	}
-	return ((int)sq);
+	return (sq);
 }
