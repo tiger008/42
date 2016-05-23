@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 22:30:57 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/27 15:21:38 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:35:43 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,14 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*temp;
-	char	*dstdst;
-	char	*srcsrc;
-	size_t	i;
-	size_t	srcsrclen;
-
-	i = 0;
-	dstdst = (char*)dst;
-	srcsrc = (char*)src;
-	srcsrclen = ft_strlen(srcsrc);
-	if (!(temp = (char*)malloc(sizeof(char) * (srcsrclen + 1))) || !dst)
-		return (NULL);
-	while (i++ < srcsrclen)
-		temp[i - 1] = srcsrc[i - 1];
-	temp[i] = '\0';
-	i = 0;
-	while (i < len)
+	IF_RETURN(!len, dst);
+	if (src < dst)
 	{
-		dstdst[i] = temp[i];
-		i++;
+		while (--len > 0)
+			((char *)dst)[len] = ((char *)src)[len];
+		((char *)dst)[len] = ((char *)src)[len];
 	}
-	free(temp);
+	else if (src != dst)
+		ft_memcpy(dst, src, len);
 	return (dst);
 }

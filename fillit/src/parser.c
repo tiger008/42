@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 11:56:38 by tperraut          #+#    #+#             */
-/*   Updated: 2016/03/22 09:39:06 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 11:36:14 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,24 +103,25 @@ int			parser(int fd, t_trio **pa_trio)
 	ssize_t	rd;
 	int		len;
 	t_trio	*a_trio;
+	int		tmp;
 
 	len = 0;
 	rd = 1;
-	if ((a_trio = (t_trio *)malloc(sizeof(t_trio) * MAX_TRIO)) == NULL)
-		return (ER);
+	tmp = 0;
+	IF_RETURN(!(a_trio = (t_trio *)malloc(sizeof(t_trio) * MAX_TRIO)), ER);
 	while (rd && (rd = read(fd, buf, BUF_SIZE)))
 	{
-		if (rd != BUF_SIZE || len == MAX_TRIO)
-			return (ER);
+		IF_RETURN(rd != BUF_SIZE || len == MAX_TRIO, ER);
 		buf[rd] = '\0';
-		if ((new_trio(buf, &(a_trio[len]))) == ER
-				|| (rd = read(fd, buf, 1)) == ER
+		IF_RETURN((new_trio(buf, &(a_trio[len]))) < 0
+				|| (rd = read(fd, buf, 1)) < 0
 				|| (rd && buf[0] != '\n')
-				|| trio_check(a_trio[len]))
-			return (ER);
+				|| trio_check(a_trio[len]), ER);
 		a_trio[len].lt = 'A' + len;
+		tmp = rd;
 		++len;
 	}
+	IF_RETURN(tmp, ER);
 	*pa_trio = a_trio;
 	return (len);
 }

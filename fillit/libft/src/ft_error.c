@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/22 09:30:26 by tperraut          #+#    #+#             */
-/*   Updated: 2016/03/22 09:30:28 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/19 22:09:12 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/19 22:23:00 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-int	ft_sqrt(int n)
+void	ft_error(char const *s)
 {
-	float	sq;
-	float	tmp;
-
-	tmp = 1.0;
-	sq = 0.5 * (1 + n);
-	while (ABS(sq - tmp) > 0.001)
-	{
-		tmp = sq;
-		sq = (0.5 * (tmp + n / tmp));
-	}
-	return ((int)sq);
+	write(2, s, ft_strlen(s));
+	exit(ERR);
 }

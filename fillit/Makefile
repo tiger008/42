@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#    Updated: 2016/03/22 09:45:03 by tperraut         ###   ########.fr        #
+#    Updated: 2016/05/23 10:40:00 by tperraut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC = \
 	  src/ft_remove_trio.c \
 	  src/ft_free_mat.c \
 	  src/ft_create_mat.c \
-	  src/ft_sqrt.c \
 	  src/ft_putpt.c \
 	  src/ft_pset.c \
 	  src/parser.c \

@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 15:24:50 by tperraut          #+#    #+#             */
-/*   Updated: 2014/11/18 19:02:08 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/22 14:53:11 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
-	if (s == NULL)
-		return (len);
-	while (s[len] != '\0')
+	while (s[len])
 		len++;
 	return (len);
 }

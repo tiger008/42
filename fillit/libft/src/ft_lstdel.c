@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/08 12:34:33 by tperraut          #+#    #+#             */
-/*   Updated: 2015/01/08 15:14:20 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/17 15:53:29 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void			ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 		return ;
 	if (!del)
 	{
-		alst = NULL;
+		*alst = NULL;
 		return ;
 	}
-	while ((**alst).next)
+	while ((*alst)->next)
 	{
-		tmp = (**alst).next;
+		tmp = (*alst)->next;
 		ft_lstdelone(alst, del);
-		alst = &tmp;
+		*alst = tmp;
 	}
 	ft_lstdelone(alst, del);
 }

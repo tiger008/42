@@ -6,17 +6,18 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#    Updated: 2015/01/08 15:45:44 by tperraut         ###   ########.fr        #
+#*   Updated: 2016/05/19 23:38:02 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CC = clang
+CFLAGS = -O3 -Werror -Wall -Wextra
 LIB = ar rc
-HEADERS = ./include/
+HEADERS = ./include
 NAME = libft.a
 MAIN = ../main/test.c
-SRC = src/ft_abs.c \
+SRC = \
+	src/ft_sqrt.c \
 	src/ft_atoi.c \
 	src/ft_bzero.c \
 	src/ft_isalnum.c \
@@ -109,3 +110,5 @@ tclean:
 	rm -f libft.so
 
 retest: tclean test
+
+.PHONY: clean fclean re norme test tclean retest
