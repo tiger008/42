@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 17:35:19 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/20 18:27:10 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 13:29:26 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	IF_RETURN(GNL_DEBUG && !s, NULL);
 	if ((char)c == '\0')
 		return ((char *)s + ft_strlen(s));
 	while (*s)

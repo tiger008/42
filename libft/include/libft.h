@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:34:39 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/21 16:30:25 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 13:30:55 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define TRUE 1
 # define FALSE 0
 # define ERR -1
+# define GNL_DEBUG 1
 
 # define ABS(X)		(X < 0 ? -X : X)
 # define MAX(X, Y)	(X < Y ? Y : X)

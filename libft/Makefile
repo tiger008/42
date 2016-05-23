@@ -127,7 +127,4 @@ fclean: clean
 
 re: fclean all
 
-norme: $(SRC)
-	norminette $^ $(INC)libft.h
-
-.PHONY: clean fclean re norme
+.PHONY: clean fclean re
