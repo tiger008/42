@@ -36,6 +36,8 @@ INC = -I ./include
 
 SRC_DIR = ./src/
 SRC_NAME = \
+	ft_abs.c \
+	ft_error.c \
 	ft_sqrt.c \
 	ft_atoi.c \
 	ft_bzero.c \

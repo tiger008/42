@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/19 22:09:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/19 22:23:00 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/23 17:57:22 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_error(char const *s)
 {
 	write(2, s, ft_strlen(s));
-	exit(ERR);
+	exit(ER);
 }
