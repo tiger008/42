@@ -28,7 +28,7 @@ LIB = ar rc
 # HEADER #
 ##########
 
-HEADERS = ./include
+INC = -I ./include
 
 ##########
 # SOURCE #
@@ -117,7 +117,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC)
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -128,6 +128,6 @@ fclean: clean
 re: fclean all
 
 norme: $(SRC)
-	norminette $^ $(HEADERS)libft.h
+	norminette $^ $(INC)libft.h
 
 .PHONY: clean fclean re norme
