@@ -62,6 +62,7 @@ SRC_NAME = \
 	parser.c \
 	get_next_line.c \
 	print_map.c \
+	free_mat.c \
 	init_map.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
 

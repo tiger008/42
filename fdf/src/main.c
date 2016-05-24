@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 02:28:29 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 05:07:45 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/24 09:49:50 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	main(int ac, char **av)
 	IF_ERROR((op = open(av[1], O_RDONLY)) < 0, "open() fail");
 	map = parser(op);
 	print_map(*map);
+	free_mat(&map);
 	return (0);
 }

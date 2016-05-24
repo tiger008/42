@@ -6,12 +6,13 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 05:07:40 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/24 09:48:24 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+# include <stdlib.h>
 # define WIN_X 640
 # define WIN_Y 640
 # define RGB 0x3333FF
@@ -53,6 +54,7 @@ typedef	struct	s_map
 
 t_map	*parser(int fd);
 void	init_map(t_map **map, int co);
+void	free_mat(t_map **map);
 
 /*
 ** CHECK

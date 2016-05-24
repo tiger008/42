@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_map.c                                        :+:      :+:    :+:   */
+/*   free_mat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/24 02:24:16 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 07:19:52 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/24 09:30:59 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/24 10:28:53 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fdf.h"
 
-void	print_map(t_map m)
-{
-	int	i;
-	int	j;
+#include <stdlib.h>
 
-	i = -1;
-	while (++i < m.li)
+void	free_mat(t_map **map)
+{
+	t_map	*tmp;
+	int		i;
+
+	i = 0;
+	if (!map || !*map)
+		return ;
+	tmp = *map;
+	while (i < tmp->li)
 	{
-		j = -1;
-		while (++j < m.co)
-		{
-			ft_putnbr(m.tab[i][j]);
-			ft_putstr(" ");
-		}
-		ft_putendl("");
+		free(tmp->tab[i]);
+		i++;
 	}
+	free(tmp);
 }
