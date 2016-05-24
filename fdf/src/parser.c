@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 19:02:47 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 05:19:55 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/24 06:58:46 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ static int		*tabmap(char **t, int size, int (*f)(const char *s))
 static void		set_list(t_list **alst, char **split, int size, int co)
 {
 	t_list	*tmp;
+	int		*tab;
 
-	tmp = ft_lstnew((void *)tabmap(split, size, &ft_atoi), sizeof(int) * size);
+	tab = tabmap(split, size, &ft_atoi);
+	tmp = ft_lstnew((void const *)tab, sizeof(int) * size);
+	free(tab);
 	IF_ERROR(!tmp, "set_list() fail");
 	IF_ERROR(co != size, "map error");
 	ft_lstadd(alst, tmp);
