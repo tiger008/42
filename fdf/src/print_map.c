@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/08 12:15:43 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 04:58:17 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/24 02:24:16 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/24 05:07:33 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "fdf.h"
 
-void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	print_map(t_map m)
 {
-	if (!alst || !*alst)
-		return ;
-	if (del)
-		(*del)((**alst).content, (**alst).content_size);
-	free(*alst);
-	*alst = NULL;
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < m.li)
+	{
+		j = -1;
+		while (++j < m.co)
+		{
+			ft_putnbr(m.tab[i][j]);
+			ft_putstr("  ");
+		}
+		ft_putendl("");
+	}
 }

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/08 12:15:43 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 04:58:17 by tperraut         ###   ########.fr       */
+/*   Created: 2014/11/26 10:16:11 by tperraut          #+#    #+#             */
+/*   Updated: 2014/11/26 10:50:29 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 512
+# define CHECK(X) ((X > 4096) ? 4096 : X)
 
-void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
-{
-	if (!alst || !*alst)
-		return ;
-	if (del)
-		(*del)((**alst).content, (**alst).content_size);
-	free(*alst);
-	*alst = NULL;
-}
+int	get_next_line(int const fd, char **line);
+#endif

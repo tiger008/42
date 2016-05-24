@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/08 12:15:43 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 04:58:17 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/24 00:26:54 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/24 04:49:52 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
+#include <stdlib.h>
 
-void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	init_map(t_map **map, int co)
 {
-	if (!alst || !*alst)
-		return ;
-	if (del)
-		(*del)((**alst).content, (**alst).content_size);
-	free(*alst);
-	*alst = NULL;
+	t_map	*tmp;
+
+	IF_ERROR(!map || co < 1, "map error");
+	IF_ERROR(!(*map = (t_map *)malloc(sizeof(t_map))), "init_map() fail");
+	tmp = *map;
+	tmp->tab = NULL;
+	tmp->li = 1;
+	tmp->co = co;
 }

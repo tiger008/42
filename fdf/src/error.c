@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/08 12:15:43 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 04:58:17 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/23 18:46:01 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/24 01:12:33 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
 
-void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	error(const char *s)
 {
-	if (!alst || !*alst)
-		return ;
-	if (del)
-		(*del)((**alst).content, (**alst).content_size);
-	free(*alst);
-	*alst = NULL;
+	perror(s);
+	exit(errno);
 }

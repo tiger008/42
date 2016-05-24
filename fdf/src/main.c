@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/08 12:15:43 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 04:58:17 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/24 02:28:29 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/24 05:07:45 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+#include <fcntl.h>
+
+int	main(int ac, char **av)
 {
-	if (!alst || !*alst)
-		return ;
-	if (del)
-		(*del)((**alst).content, (**alst).content_size);
-	free(*alst);
-	*alst = NULL;
+	int		op;
+	t_map	*map;
+
+	IF_ERROR(ac != 2, "Bad args");
+	IF_ERROR((op = open(av[1], O_RDONLY)) < 0, "open() fail");
+	map = parser(op);
+	print_map(*map);
+	return (0);
 }
