@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/08 10:59:31 by tperraut          #+#    #+#             */
-/*   Updated: 2015/01/08 12:02:10 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/24 03:04:50 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list			*ft_lstnew(void const *content, size_t content_size)
 		return (NULL);
 	if (content)
 	{
-		new_content = ft_strncpy(save, (char *)content, content_size);
+		new_content = (void *)ft_strncpy(save, (char *)content, content_size);
 		list->content = new_content;
 		list->content_size = content_size;
 	}

@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:14:04 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/23 21:22:19 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/24 03:42:38 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 void	ft_delsplit(char ***pa_str)
 {
-	int	i;
+	int		i;
+	char	**tmp;
 
 	if (pa_str && *pa_str)
 	{
+		tmp = *pa_str;
 		i = 0;
-		while ((*pa_str)[i])
+		while (tmp[i])
 		{
-			free(&((*pa_str)[i]));
+			free(tmp[i]);
 			i++;
 		}
-		free(*pa_str);
-		*pa_str = NULL;
+		free(tmp[i]);
+		free(tmp);
+		tmp = NULL;
 	}
 }
