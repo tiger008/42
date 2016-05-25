@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/24 00:26:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/25 10:09:05 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/25 16:21:16 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/25 16:21:55 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdlib.h>
+#include "libft.h"
 
-void	init_map(t_map **map, int co)
+int		ft_tablen(char **t)
 {
-	t_map	*tmp;
+	int	len;
 
-	IF_ERROR(!map || co < 1, "map error");
-	IF_ERROR(!(tmp = (t_map *)malloc(sizeof(t_map))), "init_map() fail");
-	tmp->tab = NULL;
-	tmp->li = 1;
-	tmp->co = co;
-	*map = tmp;
+	len = 0;
+	IF_RETURN(!t, len);
+	while (t[len])
+		len++;
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:34:39 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/23 21:16:04 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/25 19:53:31 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
+
 char			**ft_strsplit(char const *s, char c);
 void			ft_delsplit(char ***pa_str);
+int				ft_tablen(char **t);
 
 int				ft_atoi(const char *str);
 
@@ -157,5 +159,6 @@ int				ft_sqrt(int n);
 */
 
 void			ft_error(char const *s);
+void			ft_free(int n, ...);
 
 #endif

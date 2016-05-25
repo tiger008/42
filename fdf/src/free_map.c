@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mat.c                                         :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 09:30:59 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 10:28:53 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/25 20:22:50 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 
-void	free_mat(t_map **map)
+void	free_map(t_map **map)
 {
 	t_map	*tmp;
 	int		i;
@@ -28,5 +28,6 @@ void	free_mat(t_map **map)
 		free(tmp->tab[i]);
 		i++;
 	}
+	free(tmp->tab);
 	free(tmp);
 }

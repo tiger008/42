@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/24 00:26:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/25 10:09:05 by tperraut         ###   ########.fr       */
+/*   Created: 2016/05/25 15:52:55 by tperraut          #+#    #+#             */
+/*   Updated: 2016/05/25 16:11:39 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stdarg.h>
 #include <stdlib.h>
 
-void	init_map(t_map **map, int co)
+void	ft_free(int n, ...)
 {
-	t_map	*tmp;
+	va_list	ap;
+	void	*p;
 
-	IF_ERROR(!map || co < 1, "map error");
-	IF_ERROR(!(tmp = (t_map *)malloc(sizeof(t_map))), "init_map() fail");
-	tmp->tab = NULL;
-	tmp->li = 1;
-	tmp->co = co;
-	*map = tmp;
+	va_start(ap, n);
+	while (n--)
+	{
+		p = va_arg(ap, void *);
+		free(p);
+	}
+	va_end(ap);
 }

@@ -6,26 +6,13 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 19:02:47 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 08:37:29 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/25 17:41:41 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "get_next_line.h"
 #include "libft.h"
-
-#include <stdio.h> /* DEBUG */
-
-static int		tablen(char **t)
-{
-	int	len;
-
-	len = 0;
-	IF_RETURN(!t, len);
-	while (t[len])
-		len++;
-	return (len);
-}
 
 static int		*tabmap(char **t, int size, int (*f)(const char *s))
 {
@@ -64,7 +51,7 @@ static int		**list_to_tab(t_list **alst, int size)
 	tab = (int **)malloc(sizeof(int *) * size);
 	IF_ERROR(!tab, "list_to_tab() fail");
 	tmp = *alst;
-	while(tmp)
+	while (tmp)
 	{
 		tab[--size] = (int *)tmp->content;
 		tmp = tmp->next;
@@ -73,31 +60,37 @@ static int		**list_to_tab(t_list **alst, int size)
 	return (tab);
 }
 
+static void		free_null(char **line)
+{
+	free(*line);
+	*line = NULL;
+}
+
 t_map			*parser(int fd)
 {
 	int		rd;
 	char	*line;
-	char	**split;
 	t_list	*tmp;
 	t_map	*map;
+	char	**split;
 
 	line = NULL;
+	tmp = NULL;
 	IF_ERROR((rd = get_next_line(fd, &line)) < 1, "parser() error");
 	IF_ERROR(!(split = ft_strsplit(line, ' ')), "ft_strsplit() fail");
-	init_map(&map, tablen(split));
-	tmp = ft_lstnew((void *)tabmap(split, map->co, ft_atoi),
-			sizeof(int) * map->co);
+	free_null(&line);
+	init_map(&map, ft_tablen(split));
+	set_list(&tmp, split, ft_tablen(split), map->co);
 	ft_delsplit(&split);
-	free(line);
 	while ((rd = get_next_line(fd, &line)) > 0)
 	{
 		IF_ERROR(!(split = ft_strsplit(line, ' ')), "ft_strsplit() fail");
-		set_list(&tmp, split, tablen(split), map->co);
+		free_null(&line);
+		set_list(&tmp, split, ft_tablen(split), map->co);
 		ft_delsplit(&split);
-		free(line);
 		map->li++;
 	}
-	map->tab = list_to_tab(&tmp, map->li);
 	IF_ERROR(rd < 0, "get_next_line() fail");
+	map->tab = list_to_tab(&tmp, map->li);
 	return (map);
 }

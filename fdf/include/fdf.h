@@ -6,25 +6,22 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/24 09:48:24 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/05/25 22:21:35 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <stdlib.h>
-# define WIN_X 640
-# define WIN_Y 640
-# define RGB 0x3333FF
-# define CST1 0.8
-# define CST2 0.8
-# define DELTA 20
 
-typedef struct	s_pt
-{
-	int		x;
-	int		y;
-}				t_pt;
+# include <stdlib.h>
+
+# define W_MAX 1366
+# define H_MAX 720
+# define W_IMG ((W_MAX * 8) / 10)
+# define H_IMG ((H_MAX * 8) / 10)
+# define WHITE 0xFFFFFF
+# define CROSS_MASK (1L<<17)
+# define CROSS_V 17
 
 typedef struct	s_iimg
 {
@@ -34,13 +31,6 @@ typedef struct	s_iimg
 	int		endian;
 }				t_iimg;
 
-typedef	struct	s_env
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-}				t_env;
-
 typedef	struct	s_map
 {
 	int	**tab;
@@ -48,29 +38,45 @@ typedef	struct	s_map
 	int	co;
 }				t_map;
 
+typedef	struct	s_env
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	t_map	*map;
+	int		op;
+}				t_env;
+
 /*
 ** PARSE
 */
 
-t_map	*parser(int fd);
-void	init_map(t_map **map, int co);
-void	free_mat(t_map **map);
+t_map			*parser(int fd);
+void			init_map(t_map **map, int co);
+void			free_map(t_map **map);
 
 /*
 ** CHECK
 */
 
-void	error(const char *s);
+void			error(const char *s);
 # define IF_ERROR(x, s) if (x) error(s)
 
 /*
 ** DEBUG
 */
 
-void	print_map(t_map m);
+void			print_map(t_map m);
 
 /*
 ** DRAW
 */
 
+/*
+** EVENT
+*/
+int				manage_key(int keycode, void *param);
+int				manage_mouse(int button,int x,int y, void *param);
+int				finish(void *param);
+int				draw(void *param);
 #endif

@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/05/19 23:38:02 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/05/25 20:28:01 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ LIB = ar rc
 # HEADER #
 ##########
 
-INC = -I ./include
+INC_DIR = ./include/
+INC_NAME = libft.h
+INCLUDE = $(addprefix $(INC_DIR), $(INC_NAME))
+INC = -I $(INC_DIR)
 
 ##########
 # SOURCE #
@@ -37,6 +40,8 @@ INC = -I ./include
 SRC_DIR = ./src/
 SRC_NAME = \
 	ft_delsplit.c \
+	ft_tablen.c \
+	ft_free.c \
 	ft_isreturn.c \
 	ft_isblank.c \
 	ft_abs.c \
@@ -120,7 +125,7 @@ $(NAME): $(OBJ)
 	$(LIB) $@ $^
 	ranlib $@
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE)
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC)
 
