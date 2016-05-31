@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/05/25 22:29:55 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/05/30 12:35:10 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,14 @@ CFLAGS = -O3 -Werror -Wall -Wextra
 LIB = -lft
 LIB_DIR = ./libft
 LIB_INC = -I $(LIB_DIR)/include
+
+#######
+# X11 #
+#######
+
+ifeq (, $(findstring apple, $(shell $(CC) -dumpmachine)))
+X11_LIB = -lX11 -lXext
+endif
 
 #######
 # MLX #
@@ -99,7 +107,8 @@ $(NAME): $(OBJ)
 		$(OBJ) \
 		$(INC) \
 		$(LIB_INC) -L $(LIB_DIR) $(LIB) \
-		$(MLX_INC) -L $(MLX_DIR) $(MLX)
+		$(MLX_INC) -L $(MLX_DIR) $(MLX) \
+		$(X11_LIB)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE) $(MLX_INCLUDE)
 	mkdir -p $(OBJ_DIR)
