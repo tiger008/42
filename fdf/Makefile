@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/05/30 12:35:10 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/06/01 15:51:57 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LIB_DIR)
+	make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) -o $@ \
 		$(OBJ) \
 		$(INC) \
@@ -116,6 +117,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE) $(MLX_INCLUDE)
 
 clean:
 	make clean -C $(LIB_DIR)
+	make clean -C $(MLX_DIR)
 	rm -rf $(OBJ_DIR)
 
 fclean: clean

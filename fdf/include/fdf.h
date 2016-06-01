@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/25 22:21:35 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/06/01 12:58:34 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdlib.h>
 
-# define W_MAX 1366
-# define H_MAX 720
+# define W_MAX 600
+# define H_MAX 400
 # define W_IMG ((W_MAX * 8) / 10)
 # define H_IMG ((H_MAX * 8) / 10)
 # define WHITE 0xFFFFFF
