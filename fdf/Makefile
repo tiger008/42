@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/06/01 15:51:57 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/06/03 16:52:44 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,6 @@ LIB_DIR = ./libft
 LIB_INC = -I $(LIB_DIR)/include
 
 #######
-# X11 #
-#######
-
-ifeq (, $(findstring apple, $(shell $(CC) -dumpmachine)))
-X11_LIB = -lX11 -lXext
-endif
-
-#######
 # MLX #
 #######
 
@@ -55,6 +47,14 @@ MLX_INC_DIR = $(MLX_DIR)/include/
 MLX_INC_NAME = mlx.h
 MLX_INC = -I $(MLX_INC_DIR)
 MLX_INCLUDE = $(addprefix $(MLX_INC_DIR), $(MLX_INC_NAME))
+
+#######
+# X11 #
+#######
+
+ifeq ($(SYS), "linux)")
+X11_LIB = -lX11 -lXext
+endif
 
 ##########
 # HEADER #
@@ -81,6 +81,7 @@ SRC_NAME = \
 	manage_mouse.c \
 	manage_key.c \
 	init_map.c \
+	new_img_data.c \
 	print_map.c \
 	free_map.c \
 	draw.c \

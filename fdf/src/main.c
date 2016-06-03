@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 02:28:29 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/25 22:27:20 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/06/03 18:18:05 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int ac, char **av)
 	e.map = parser(e.op);
 	IF_ERROR(!(e.img = mlx_new_image(e.mlx, W_IMG, H_IMG)),
 			"mlx_new_image() fail");
+	e.img_data = new_img_data(e.img);
 	mlx_key_hook(e.win, manage_key, &e);
 	mlx_mouse_hook(e.win, manage_mouse, &e);
 	mlx_expose_hook(e.win, draw, e.map);

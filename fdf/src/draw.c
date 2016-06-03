@@ -6,11 +6,18 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:45:55 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/25 20:33:42 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/06/03 19:55:56 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	draw(void *param)
+#include "fdf.h"
+
+//static void	fill_line(int *p1, int *p2, void *env)
+//{
+//
+//}
+
+int			draw(void *param)
 {
 	if (param)
 		return (0);
