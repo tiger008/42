@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/03 18:17:55 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/06/29 12:17:27 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 # define CROSS_V 17
 # define ENDIAN 0
 # define S_PIXEL 3
+
+typedef struct	t_pt
+{
+	int	x;
+	int	y;
+	int	z;
+}
 
 typedef struct	s_img
 {
@@ -51,6 +58,14 @@ typedef	struct	s_env
 }				t_env;
 
 /*
+** POINT
+*/
+
+void	pt_new(t_pt *p, int x, int y, int z);
+void	pt_inv(t_pt *p);
+void	pt_iso(t_pt *p);
+
+/*
 ** PARSE
 */
 
@@ -76,6 +91,9 @@ void			print_map(t_map m);
 ** DRAW
 */
 
+void			ft_expose(t_env *env);
+int				draw(void *param);
+
 /*
 ** EVENT
 */
@@ -83,6 +101,5 @@ void			print_map(t_map m);
 int				manage_key(int keycode, void *param);
 int				manage_mouse(int button,int x,int y, void *param);
 int				finish(void *param);
-int				draw(void *param);
 
 #endif

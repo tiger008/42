@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/06/03 16:52:44 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/06/29 12:17:14 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ INC = -I $(INC_DIR)
 
 SRC_DIR = ./src/
 SRC_NAME = \
+	ft_point.c \
+	ft_expose.c \
 	get_next_line.c \
 	parser.c \
 	error.c \
