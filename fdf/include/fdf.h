@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 12:17:27 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/06/29 17:17:14 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # define ENDIAN 0
 # define S_PIXEL 3
 
-typedef struct	t_pt
+typedef struct	s_pt
 {
 	int	x;
 	int	y;
 	int	z;
-}
+}				t_pt;
 
 typedef struct	s_img
 {
@@ -92,6 +92,7 @@ void			print_map(t_map m);
 */
 
 void			ft_expose(t_env *env);
+void			fill_line(t_pt p1, t_pt p2, t_img *img, int mode);
 int				draw(void *param);
 
 /*

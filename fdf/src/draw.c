@@ -6,24 +6,12 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:45:55 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 12:16:50 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/06/29 17:17:07 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_pt(t_pt p, t_img *img)
-{
-	unsigned char	*pixel;
-
-	if ((p.x > W_IMG) || (p.y > H_IMG))
-		return ;
-	pixel = (unsigned char *)img->data + (p.y * img->sizeline
-			+ (img->bpp / 8) * p.x);
-	pixel[2] = (((W_IMG - p.x) % (2 * W_IMG)) / (W_IMG / 100)) * (255 / 100);
-	pixel[1] = ((p.y % (2 * H_IMG)) / (H_IMG / 100)) * (255 / 100);
-	pixel[0] = (((2 * W_IMG + p.x) % W_IMG) / (W_IMG / 100)) * (255 / 100);
-}
 
 void	draw_bg(t_img *img)
 {
@@ -49,25 +37,44 @@ void	draw_bg(t_img *img)
 	}
 }
 
-static void	fill_line(t_pt p1, t_pt p2)
-{
-	t_pt	tmp;
-
-}
+/*
+ ** 0 1
+ ** 2
+ */
 
 int			draw(void *param)
 {
 	t_env	*e;
-	t_pt	p1;
-	t_pt	p2;
+	t_pt	p[4];
 	int		i;
 	int		j;
 
-	i = 0;
-	j = 0;
 	e = (t_env *)param;
-	pt_iso(pt_init(&p1, i, j, ((e->map)->tab)[i][j]));
-	if (param)
-		return (0);
+	pt_new(&(p[0]), 0, 0, ((e->map)->tab)[0][0]);
+	pt_iso(&(p[0]));
+	i = -1;
+	while (++i < (e->map)->li)
+	{
+		j = -1;
+		while (++j < (e->map)->co)
+		{
+			if (j + 1 < (e->map)->co)
+			{
+				pt_new(&(p[1]), i, j + 1, ((e->map)->tab)[i][j + 1]);
+				pt_iso(&(p[1]));
+				fill_line(p[0], p[1], e->img_data, 0);
+			}
+			if (i + 1 < (e->map)->li)
+			{
+				pt_new(&(p[2]), i + 1, j, ((e->map)->tab)[i + 1][j]);
+				pt_iso(&(p[2]));
+				fill_line(p[0], p[2], e->img_data, 0);
+			}
+			if (j == 0)
+				p[3] = p[2];
+			p[0] = p[1];
+		}
+		p[0] = p[3];
+	}
 	return (0);
 }
