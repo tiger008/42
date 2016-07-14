@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:45:55 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 17:17:07 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/07/06 14:09:03 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 void	draw_bg(t_img *img)
 {
-	int				x = 0;
-	int				y = 0;
+	int				x;
+	int				y;
 	unsigned char	*pixel;
 
+	y = 0;
 	while (y <= H_IMG)
 	{
 		x = 0;
@@ -50,6 +51,7 @@ int			draw(void *param)
 	int		j;
 
 	e = (t_env *)param;
+	print_map(*(e->map));
 	pt_new(&(p[0]), 0, 0, ((e->map)->tab)[0][0]);
 	pt_iso(&(p[0]));
 	i = -1;

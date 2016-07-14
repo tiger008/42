@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 02:28:29 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 17:17:10 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/07/06 14:07:54 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	e.img_data = new_img_data(e.img);
 	mlx_key_hook(e.win, manage_key, &e);
 	mlx_mouse_hook(e.win, manage_mouse, &e);
-	mlx_expose_hook(e.win, draw, e.map);
+	mlx_expose_hook(e.win, &draw, &e);
 	mlx_hook(e.win, CROSS_V, CROSS_MASK, finish, &e);
 	mlx_loop(e.mlx);
 	return (0);

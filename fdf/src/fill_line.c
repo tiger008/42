@@ -6,12 +6,14 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 14:44:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 17:17:06 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/07/06 16:10:49 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+
+#include <stdio.h> /*TODO DEBUG*/
 
 static void	fill_pt(t_pt p, t_img *img)
 {
@@ -30,13 +32,14 @@ void		fill_line(t_pt p1, t_pt p2, t_img *img, int mode)
 {
 	t_pt	tmp;
 
+	printf("p1(%d, %d)\np2(%d, %d)\nmode: %d\n-----\n", p1.x, p1.y, p2.x, p2.y, mode);
 	if (p2.x < p1.x)
 		return (fill_line(p2, p1, img, mode));
-	else if ((p2.x - p1.x) < ABS(p2.y - p1.y))
+	else if ((ABS(p2.x - p1.x)) < (ABS(p2.y - p1.y)))
 	{
 		pt_inv(&p1);
 		pt_inv(&p2);
-		return (fill_line(p1, p2, img, 1));
+		return (fill_line(p1, p2, img, !mode));
 	}
 	else
 	{
@@ -50,7 +53,7 @@ void		fill_line(t_pt p1, t_pt p2, t_img *img, int mode)
 				if (mode > 0)
 					pt_inv(&tmp);
 				tmp.y = p1.y + ((p2.y - p1.y) * (tmp.x - p1.x)) / (p2.x - p1.x);
-				(tmp.x)++;
+				tmp.x++;
 			}
 	}
 }

@@ -6,13 +6,13 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/06/29 17:17:09 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/07/06 14:08:25 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 ##########
 # TARGET #
-##########
+#########
 
 NAME = fdf
 
@@ -52,9 +52,15 @@ MLX_INCLUDE = $(addprefix $(MLX_INC_DIR), $(MLX_INC_NAME))
 # X11 #
 #######
 
-ifeq ($(SYS), "linux)")
+ifeq ($(SYS), linux)
 X11_LIB = -lX11 -lXext
 endif
+
+########
+# MATH #
+########
+
+MATH = -lm
 
 ##########
 # HEADER #
@@ -113,7 +119,8 @@ $(NAME): $(OBJ)
 		$(INC) \
 		$(LIB_INC) -L $(LIB_DIR) $(LIB) \
 		$(MLX_INC) -L $(MLX_DIR) $(MLX) \
-		$(X11_LIB)
+		$(X11_LIB) \
+		$(MATH)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE) $(MLX_INCLUDE)
 	mkdir -p $(OBJ_DIR)
