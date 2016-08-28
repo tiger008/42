@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 17:17:14 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/24 15:52:37 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdlib.h>
 
-# define W_MAX 600
-# define H_MAX 400
+# define W_MAX 800
+# define H_MAX 600
 # define W_IMG W_MAX
 # define H_IMG H_MAX
 # define WHITE 0xFFFFFF
@@ -45,6 +45,7 @@ typedef	struct	s_map
 	int	**tab;
 	int	li;
 	int	co;
+	int	bw;
 }				t_map;
 
 typedef	struct	s_env

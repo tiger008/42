@@ -6,11 +6,13 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 00:26:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/05/25 10:09:05 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/24 16:04:29 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
+
 #include <stdlib.h>
 
 void	init_map(t_map **map, int co)
@@ -22,5 +24,6 @@ void	init_map(t_map **map, int co)
 	tmp->tab = NULL;
 	tmp->li = 1;
 	tmp->co = co;
+	tmp->bw = ft_min(W_MAX / co, H_MAX / l);
 	*map = tmp;
 }

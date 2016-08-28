@@ -6,7 +6,7 @@
 #    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#*   Updated: 2016/05/25 20:28:01 by tperraut         ###   ########.fr       *#
+#*   Updated: 2016/08/24 16:01:31 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ INC = -I $(INC_DIR)
 
 SRC_DIR = ./src/
 SRC_NAME = \
+	ft_min.c \
 	ft_delsplit.c \
 	ft_tablen.c \
 	ft_free.c \
