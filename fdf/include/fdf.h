@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/29 11:17:42 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/29 18:18:42 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # define W_MAX 800
 # define H_MAX 600
+# define DX 1.
+# define DY 1.
 # define W_IMG W_MAX
 # define H_IMG H_MAX
 # define WHITE 0xFFFFFF

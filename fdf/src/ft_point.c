@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 09:01:47 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/29 12:56:25 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/29 18:20:24 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	pt_iso(t_pt *p, int bw)
 	double	x;
 	double	y;
 
-	x = 10 * ((sqrt(2) / 2) * (p->x - p->y) + (double)bw);
-	y = 10 * (p->z / 5 - (sqrt(2) / 4) * (p->x + p->y) + (double)bw);
-	pt_new(p, (int)nearbyint(x), (int)nearbyint(y), p->z);
+	x = -250 + (p->x - p->y) * ((double)bw / 2);
+	y = -10 + (p->z / 4. - 0.5 * (p->x + p->y)) * ((double)bw / 2);
+	pt_new(p, ABS((int)nearbyint(x)), ABS((int)nearbyint(y)), p->z);
 }

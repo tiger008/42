@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 14:44:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/29 11:22:41 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/29 18:14:45 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ static void	fill_pt(t_pt p, t_img *img)
 		return ;
 	pixel = (unsigned char *)img->data + (p.y * img->sizeline
 			+ (img->bpp / 8) * p.x);
-	//printf("sizeline : %d	bpp : %d \n", img->sizeline, img->bpp);
-	//if (pixel)
-	//{
-	//	printf("%c", pixel[0]);
-	//	printf("%c", pixel[1]);
-	//	printf("%c", pixel[2]);
-	//}
 	pixel[2] = (((W_IMG - p.x) % (2 * W_IMG)) / (W_IMG / 100)) * (255 / 100);
 	pixel[1] = ((p.y % (2 * H_IMG)) / (H_IMG / 100)) * (255 / 100);
 	pixel[0] = (((2 * W_IMG + p.x) % W_IMG) / (W_IMG / 100)) * (255 / 100);
@@ -39,7 +32,10 @@ void		fill_line(t_pt p1, t_pt p2, t_img *img, int mode)
 {
 	t_pt	tmp;
 
-	printf("p1(%d, %d, %d)\np2(%d, %d, %d)\nmode: %d\n-----\n", p1.x, p1.y, p1.z, p2.x, p2.y, p2.z, mode); /*TODO*/
+	/*printf("p1(%d, %d, %d)\np2(%d, %d, %d)\nmode: %d\n-----\n", p1.x, p1.y, p1.z, p2.x, p2.y, p2.z, mode); *//*TODO*/
+	if (p1.x < 0 || p1.y < 0 || p1.x > W_IMG || p1.y > H_IMG
+			|| p2.x < 0 || p2.y < 0 || p2.x > W_IMG || p2.y > H_IMG)
+		return ;
 	if (p2.x < p1.x)
 		return (fill_line(p2, p1, img, mode));
 	else if ((ABS(p2.x - p1.x)) < (ABS(p2.y - p1.y)))
