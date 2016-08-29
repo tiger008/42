@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/24 15:52:37 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/29 11:17:42 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef	struct	s_env
 
 void	pt_new(t_pt *p, int x, int y, int z);
 void	pt_inv(t_pt *p);
-void	pt_iso(t_pt *p);
+void	pt_iso(t_pt *p, int bw);
 
 /*
 ** PARSE

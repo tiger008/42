@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 14:44:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/07/27 01:45:43 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/29 11:22:41 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ static void	fill_pt(t_pt p, t_img *img)
 		return ;
 	pixel = (unsigned char *)img->data + (p.y * img->sizeline
 			+ (img->bpp / 8) * p.x);
-	printf("sizeline : %d	bpp : %d \n", img->sizeline, img->bpp);
-	if (pixel)
-	{
-		printf("%c", pixel[0]);
-		printf("%c", pixel[1]);
-		printf("%c", pixel[2]);
-	}
-	//pixel[2] = (((W_IMG - p.x) % (2 * W_IMG)) / (W_IMG / 100)) * (255 / 100);
-	//pixel[1] = ((p.y % (2 * H_IMG)) / (H_IMG / 100)) * (255 / 100);
-	//pixel[0] = (((2 * W_IMG + p.x) % W_IMG) / (W_IMG / 100)) * (255 / 100);
+	//printf("sizeline : %d	bpp : %d \n", img->sizeline, img->bpp);
+	//if (pixel)
+	//{
+	//	printf("%c", pixel[0]);
+	//	printf("%c", pixel[1]);
+	//	printf("%c", pixel[2]);
+	//}
+	pixel[2] = (((W_IMG - p.x) % (2 * W_IMG)) / (W_IMG / 100)) * (255 / 100);
+	pixel[1] = ((p.y % (2 * H_IMG)) / (H_IMG / 100)) * (255 / 100);
+	pixel[0] = (((2 * W_IMG + p.x) % W_IMG) / (W_IMG / 100)) * (255 / 100);
 }
 
 void		fill_line(t_pt p1, t_pt p2, t_img *img, int mode)

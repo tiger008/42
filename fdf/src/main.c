@@ -6,12 +6,13 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 02:28:29 by tperraut          #+#    #+#             */
-/*   Updated: 2016/07/06 14:07:54 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/08/29 10:43:42 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
+#include "libft.h"
 
 #include <fcntl.h>
 
@@ -25,6 +26,7 @@ int	main(int ac, char **av)
 	IF_ERROR(!(e.win = mlx_new_window(e.mlx, W_MAX, H_MAX, "FDF")),
 			"mlx_new_window() fail");
 	e.map = parser(e.op);
+	(e.map)->bw = ft_min(W_MAX / (e.map)->co, H_MAX / (e.map)->li);
 	IF_ERROR(!(e.img = mlx_new_image(e.mlx, W_IMG, H_IMG)),
 			"mlx_new_image() fail");
 	e.img_data = new_img_data(e.img);
