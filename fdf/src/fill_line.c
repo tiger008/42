@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 14:44:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/29 18:14:45 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/09/05 17:32:46 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	fill_pt(t_pt p, t_img *img)
 {
 	unsigned char	*pixel;
 
-	if ((p.x > W_IMG) || (p.y > H_IMG))
+	if (p.x < 0 || p.y < 0 || p.x > W_IMG || p.y > H_IMG)
 		return ;
 	pixel = (unsigned char *)img->data + (p.y * img->sizeline
 			+ (img->bpp / 8) * p.x);
@@ -28,35 +28,72 @@ static void	fill_pt(t_pt p, t_img *img)
 	pixel[0] = (((2 * W_IMG + p.x) % W_IMG) / (W_IMG / 100)) * (255 / 100);
 }
 
-void		fill_line(t_pt p1, t_pt p2, t_img *img, int mode)
+static void	cas1(t_pt p, int dx, int dy, t_img *img)
 {
-	t_pt	tmp;
+	int		xinc;
+	int		yinc;
+	int		acc;
+	int		i;
 
-	/*printf("p1(%d, %d, %d)\np2(%d, %d, %d)\nmode: %d\n-----\n", p1.x, p1.y, p1.z, p2.x, p2.y, p2.z, mode); *//*TODO*/
-	if (p1.x < 0 || p1.y < 0 || p1.x > W_IMG || p1.y > H_IMG
-			|| p2.x < 0 || p2.y < 0 || p2.x > W_IMG || p2.y > H_IMG)
-		return ;
-	if (p2.x < p1.x)
-		return (fill_line(p2, p1, img, mode));
-	else if ((ABS(p2.x - p1.x)) < (ABS(p2.y - p1.y)))
+	xinc = (dx > 0) ? 1 : -1;
+	yinc = (dy > 0) ? 1 : -1;
+	dx = ABS(dx);
+	dy = ABS(dy);
+	acc = dx / 2;
+	i = 1;
+	while (i <= dx)
 	{
-		pt_inv(&p1);
-		pt_inv(&p2);
-		return (fill_line(p1, p2, img, !mode));
+		p.x += xinc;
+		acc += dy;
+		if (acc >= dx)
+		{
+			acc -= dx;
+			p.y += yinc;
+		}
+		fill_pt(p, img);
+		i++;
 	}
+}
+
+static void	cas2(t_pt p, int dx, int dy, t_img *img)
+{
+	int		xinc;
+	int		yinc;
+	int		acc;
+	int		i;
+
+	xinc = (dx > 0) ? 1 : -1;
+	yinc = (dy > 0) ? 1 : -1;
+	dx = ABS(dx);
+	dy = ABS(dy);
+	acc = dy / 2;
+	i = 1;
+	while (i <= dy)
+	{
+		p.y += yinc;
+		acc += dx;
+		if (acc >= dy)
+		{
+			acc -= dy;
+			p.x += xinc;
+		}
+		fill_pt(p, img);
+		i++;
+	}
+}
+
+void		fill_line(t_pt p1, t_pt p2, t_img *img)
+{
+	t_pt	p;
+	int		dx;
+	int		dy;
+
+	pt_new(&p, p1.x, p1.y, p1.z);
+	dx = p2.x - p1.x;
+	dy = p2.y - p1.y;
+	fill_pt(p, img);
+	if (ABS(dx) > ABS(dy))
+		cas1(p, dx, dy, img);
 	else
-	{
-		pt_new(&tmp, p1.x, p1.y, p1.z);
-		if (ABS(p2.x - p1.x) > 0)
-			while (tmp.x <= p2.x)
-			{
-				if (mode > 0)
-					pt_inv(&tmp);
-				fill_pt(tmp, img);
-				if (mode > 0)
-					pt_inv(&tmp);
-				tmp.y = p1.y + ((p2.y - p1.y) * (tmp.x - p1.x)) / (p2.x - p1.x);
-				tmp.x++;
-			}
-	}
+		cas2(p, dx, dy, img);
 }

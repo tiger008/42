@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:45:55 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/29 11:59:14 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/09/01 15:49:16 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,45 @@ void	draw_bg(t_img *img)
  ** 0 1
  ** 2
  */
+/*int			draw(void *param)
+{
+	t_pt	p[12];
+	t_env	*e;
+	int		x;
+
+	e = (t_env *)param;
+	pt_new(&(p[0]), 0, 0, 0);
+	pt_new(&(p[1]), W_IMG, H_IMG, 0);
+	pt_new(&(p[2]), 0, H_IMG, 0);
+	pt_new(&(p[3]), W_IMG, 0, 0);
+	pt_new(&(p[4]), 0, H_IMG / 2, 0);
+	pt_new(&(p[5]), W_IMG, H_IMG / 2, 0);
+	pt_new(&(p[6]), W_IMG / 2, 0, 0);
+	pt_new(&(p[7]), W_IMG / 2, H_IMG, 0);
+	pt_new(&(p[8]), 0, H_IMG, 0);
+	pt_new(&(p[10]), W_IMG, H_IMG, 0);
+	fill_line(p[0], p[1], e->img_data);
+	fill_line(p[2], p[3], e->img_data);
+	fill_line(p[4], p[5], e->img_data);
+	fill_line(p[6], p[7], e->img_data);
+	x = 20;
+	while (x < W_IMG)
+	{
+		pt_new(&(p[9]), x, 0, 0);
+		fill_line(p[8], p[9], e->img_data);
+		x += 20;
+	}
+	x = W_IMG-1;
+	while (x > 0)
+	{
+		pt_new(&(p[11]), x, 1, 0);
+		fill_line(p[10], p[11], e->img_data);
+		x -= 20;
+	}
+   ft_expose(e);
+	return (0);
+}
+*/
 
 int			draw(void *param)
 {
@@ -64,13 +103,13 @@ int			draw(void *param)
 			{
 				pt_new(&(p[1]), i, j + 1, ((e->map)->tab)[i][j + 1]);
 				pt_iso(&(p[1]), (e->map)->bw);
-				fill_line(p[0], p[1], e->img_data, 0);
+				fill_line(p[0], p[1], e->img_data);
 			}
 			if (i + 1 < (e->map)->li)
 			{
 				pt_new(&(p[2]), i + 1, j, ((e->map)->tab)[i + 1][j]);
 				pt_iso(&(p[2]), (e->map)->bw);
-				fill_line(p[0], p[2], e->img_data, 0);
+				fill_line(p[0], p[2], e->img_data);
 			}
 			if (j == 0)
 				p[3] = p[2];

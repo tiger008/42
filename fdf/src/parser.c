@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 19:02:47 by tperraut          #+#    #+#             */
-/*   Updated: 2016/06/29 17:17:11 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/09/13 00:30:32 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		*tabmap(char **t, int size, int (*f)(const char *s))
 	i = 0;
 	while (i < size)
 	{
-		tab[i] = (*f)(t[i]);
+		tab[size - 1 - i] = (*f)(t[i]);
 		i++;
 	}
 	return (tab);
@@ -47,13 +47,15 @@ static int		**list_to_tab(t_list **alst, int size)
 {
 	int		**tab;
 	t_list	*tmp;
+	int		i;
 
 	tab = (int **)malloc(sizeof(int *) * size);
 	IF_ERROR(!tab, "list_to_tab() fail");
 	tmp = *alst;
+	i = -1;
 	while (tmp)
 	{
-		tab[--size] = (int *)tmp->content;
+		tab[++i] = (int *)tmp->content;
 		tmp = tmp->next;
 	}
 	ft_lstdel(alst, NULL);
