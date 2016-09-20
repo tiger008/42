@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:34:39 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/24 16:00:01 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/09/05 16:51:38 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ void			ft_putnbr_fd(int n, int fd);
 int				ft_abs(int n);
 int				ft_sqrt(int n);
 int				ft_min(int x, int y);
+int				ft_max(int x, int y);
 
 /*
 ** ---------
