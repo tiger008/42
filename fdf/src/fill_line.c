@@ -6,14 +6,12 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 14:44:54 by tperraut          #+#    #+#             */
-/*   Updated: 2016/09/05 17:32:46 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/10/02 14:56:32 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-
-#include <stdio.h> /*TODO DEBUG*/
 
 static void	fill_pt(t_pt p, t_img *img)
 {

@@ -6,7 +6,7 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 10:50:12 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/31 18:38:09 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/10/02 16:13:03 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define H_MAX 600
 # define DX 1.
 # define DY 1.
+# define CST 1.
 # define W_IMG W_MAX
 # define H_IMG H_MAX
 # define WHITE 0xFFFFFF
@@ -48,6 +49,7 @@ typedef	struct	s_map
 	int	li;
 	int	co;
 	int	bw;
+	int	cz;
 }				t_map;
 
 typedef	struct	s_env
@@ -61,16 +63,16 @@ typedef	struct	s_env
 }				t_env;
 
 /*
- ** POINT
- */
+** POINT
+*/
 
 void			pt_new(t_pt *p, int x, int y, int z);
 void			pt_inv(t_pt *p);
-void			pt_iso(t_pt *p, int bw);
+void			pt_iso(t_pt *p, int bw, int cz);
 
 /*
- ** PARSE
- */
+** PARSE
+*/
 
 t_map			*parser(int fd);
 t_img			*new_img_data(void *img);
@@ -78,32 +80,32 @@ void			init_map(t_map **map, int co);
 void			free_map(t_map **map);
 
 /*
- ** CHECK
- */
+** CHECK
+*/
 
 void			error(const char *s);
 # define IF_ERROR(x, s) if (x) error(s)
 
 /*
- ** DEBUG
- */
+** DEBUG
+*/
 
 void			print_map(t_map m);
 
 /*
- ** DRAW
- */
+** DRAW
+*/
 
 void			ft_expose(t_env *env);
 void			fill_line(t_pt p1, t_pt p2, t_img *img);
 int				draw(void *param);
 
 /*
- ** EVENT
- */
+** EVENT
+*/
 
 int				manage_key(int keycode, void *param);
-int				manage_mouse(int button,int x,int y, void *param);
+int				manage_mouse(int button, int x, int y, void *param);
 int				finish(void *param);
 
 #endif
