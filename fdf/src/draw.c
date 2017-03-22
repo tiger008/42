@@ -6,14 +6,13 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:45:55 by tperraut          #+#    #+#             */
-/*   Updated: 2016/09/01 15:49:16 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/10/02 16:12:48 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-void	draw_bg(t_img *img)
+void		draw_bg(t_img *img)
 {
 	int				x;
 	int				y;
@@ -26,7 +25,7 @@ void	draw_bg(t_img *img)
 		while (x <= W_IMG)
 		{
 			pixel = (unsigned char *)img->data + y * img->sizeline
-				+ (img->bpp/8) * x;
+				+ (img->bpp / 8) * x;
 			pixel[2] = (((W_IMG - x) % (2 * W_IMG)) / (W_IMG / 100))
 				* (255 / 100);
 			pixel[1] = ((y % (2 * H_IMG)) / (H_IMG / 100)) * (255 / 100);
@@ -39,78 +38,45 @@ void	draw_bg(t_img *img)
 }
 
 /*
- ** 0 1
- ** 2
- */
-/*int			draw(void *param)
-{
-	t_pt	p[12];
-	t_env	*e;
-	int		x;
-
-	e = (t_env *)param;
-	pt_new(&(p[0]), 0, 0, 0);
-	pt_new(&(p[1]), W_IMG, H_IMG, 0);
-	pt_new(&(p[2]), 0, H_IMG, 0);
-	pt_new(&(p[3]), W_IMG, 0, 0);
-	pt_new(&(p[4]), 0, H_IMG / 2, 0);
-	pt_new(&(p[5]), W_IMG, H_IMG / 2, 0);
-	pt_new(&(p[6]), W_IMG / 2, 0, 0);
-	pt_new(&(p[7]), W_IMG / 2, H_IMG, 0);
-	pt_new(&(p[8]), 0, H_IMG, 0);
-	pt_new(&(p[10]), W_IMG, H_IMG, 0);
-	fill_line(p[0], p[1], e->img_data);
-	fill_line(p[2], p[3], e->img_data);
-	fill_line(p[4], p[5], e->img_data);
-	fill_line(p[6], p[7], e->img_data);
-	x = 20;
-	while (x < W_IMG)
-	{
-		pt_new(&(p[9]), x, 0, 0);
-		fill_line(p[8], p[9], e->img_data);
-		x += 20;
-	}
-	x = W_IMG-1;
-	while (x > 0)
-	{
-		pt_new(&(p[11]), x, 1, 0);
-		fill_line(p[10], p[11], e->img_data);
-		x -= 20;
-	}
-   ft_expose(e);
-	return (0);
-}
+** 0 1
+** 2
 */
+
+static void	drawing(t_pt *p, int i, int j, t_env *e)
+{
+	if (j + 1 < (e->map)->co)
+	{
+		pt_new(&(p[1]), i, j + 1, ((e->map)->tab)[i][j + 1]);
+		pt_iso(&(p[1]), (e->map)->bw, (e->map)->cz);
+		fill_line(p[0], p[1], e->img_data);
+	}
+	if (i + 1 < (e->map)->li)
+	{
+		pt_new(&(p[2]), i + 1, j, ((e->map)->tab)[i + 1][j]);
+		pt_iso(&(p[2]), (e->map)->bw, (e->map)->cz);
+		fill_line(p[0], p[2], e->img_data);
+	}
+}
 
 int			draw(void *param)
 {
 	t_env	*e;
-	t_pt	p[4];
+	t_pt	*p;
 	int		i;
 	int		j;
 
 	e = (t_env *)param;
+	p = (t_pt *)malloc(sizeof(t_pt) * 4);
 	print_map(*(e->map));
 	pt_new(&(p[0]), 0, 0, ((e->map)->tab)[0][0]);
-	pt_iso(&(p[0]), (e->map)->bw);
+	pt_iso(&(p[0]), (e->map)->bw, (e->map)->cz);
 	i = -1;
 	while (++i < (e->map)->li)
 	{
 		j = -1;
 		while (++j < (e->map)->co)
 		{
-			if (j + 1 < (e->map)->co)
-			{
-				pt_new(&(p[1]), i, j + 1, ((e->map)->tab)[i][j + 1]);
-				pt_iso(&(p[1]), (e->map)->bw);
-				fill_line(p[0], p[1], e->img_data);
-			}
-			if (i + 1 < (e->map)->li)
-			{
-				pt_new(&(p[2]), i + 1, j, ((e->map)->tab)[i + 1][j]);
-				pt_iso(&(p[2]), (e->map)->bw);
-				fill_line(p[0], p[2], e->img_data);
-			}
+			drawing(p, i, j, e);
 			if (j == 0)
 				p[3] = p[2];
 			p[0] = p[1];

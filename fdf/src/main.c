@@ -6,7 +6,7 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 02:28:29 by tperraut          #+#    #+#             */
-/*   Updated: 2016/08/29 10:43:42 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/10/02 16:15:07 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ int	main(int ac, char **av)
 {
 	t_env	e;
 
-	IF_ERROR(ac != 2, "Bad args");
+	IF_ERROR(ac < 2 || ac > 3, "Usage ./fillit file optional_number");
 	IF_ERROR((e.op = open(av[1], O_RDONLY)) < 0, "open() fail");
 	IF_ERROR(!(e.mlx = mlx_init()), "mlx_init() fail");
 	IF_ERROR(!(e.win = mlx_new_window(e.mlx, W_MAX, H_MAX, "FDF")),
 			"mlx_new_window() fail");
 	e.map = parser(e.op);
 	(e.map)->bw = ft_min(W_MAX / (e.map)->co, H_MAX / (e.map)->li);
+	(e.map)->cz = (ac > 2) ? ft_max(ABS(ft_atoi(av[2])), 1) : 8;
 	IF_ERROR(!(e.img = mlx_new_image(e.mlx, W_IMG, H_IMG)),
 			"mlx_new_image() fail");
 	e.img_data = new_img_data(e.img);

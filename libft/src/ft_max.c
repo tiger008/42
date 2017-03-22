@@ -6,11 +6,11 @@
 /*   By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:49:07 by tperraut          #+#    #+#             */
-/*   Updated: 2016/09/05 17:03:26 by tperraut         ###   ########.fr       */
+/*   Updated: 2016/10/02 16:50:51 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_max(int x, int y)
 {
-	return ((x < y) ?  y : x);
+	return ((x < y) ? y : x);
 }
