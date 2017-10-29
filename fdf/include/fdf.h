@@ -43,7 +43,7 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef	struct	s_map
+typedef struct	s_map
 {
 	int	**tab;
 	int	li;
@@ -52,7 +52,7 @@ typedef	struct	s_map
 	int	cz;
 }				t_map;
 
-typedef	struct	s_env
+typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
@@ -84,7 +84,7 @@ void			free_map(t_map **map);
 */
 
 void			error(const char *s);
-# define IF_ERROR(x, s) if (x) error(s)
+# define IF_ERROR(err, msg) if (err) error(msg)
 
 /*
 ** DEBUG

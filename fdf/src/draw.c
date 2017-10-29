@@ -67,7 +67,7 @@ int			draw(void *param)
 
 	e = (t_env *)param;
 	p = (t_pt *)malloc(sizeof(t_pt) * 4);
-	print_map(*(e->map));
+	//print_map(*(e->map));
 	pt_new(&(p[0]), 0, 0, ((e->map)->tab)[0][0]);
 	pt_iso(&(p[0]), (e->map)->bw, (e->map)->cz);
 	i = -1;
