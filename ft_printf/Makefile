@@ -3,28 +3,66 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tperraut <tperraut@student.42.fr>          +#+  +:+       +#+         #
+#    By: tperraut <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 15:54:33 by tperraut          #+#    #+#              #
-#    Updated: 2016/04/28 20:58:50 by tperraut         ###   ########.fr        #
+#*   Updated: 2016/07/06 14:08:25 by tperraut         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-LIB = ar rc
-HEADERS = ./include/
-NAME = libftprintf.a
-SRC = \
-	src/ft_putstr.c \
-	src/ft_strlen.c \
-	src/ft_strdup.c \
-	src/ft_itoa.c \
-	src/ft_printf.c #\
-	src/ft_strcmp.c \
-	src/ft_putchar.c
+##########
+# TARGET #
+##########
 
-OBJ = $(SRC:.c=.o)
+NAME = libftprintf.a
+
+############
+# COMPILER #
+############
+
+CC = clang
+CFLAGS = -O3 -Werror -Wall -Wextra
+
+#######
+# LIB #
+#######
+
+LIB = ar rc
+
+##########
+# HEADER #
+##########
+
+INC_DIR = ./include/
+INC_NAME = \
+		libftprintf.h
+INCLUDE = $(addprefix $(INC_DIR), $(INC_NAME))
+INC = -I $(INC_DIR)
+
+##########
+# SOURCE #
+##########
+
+SRC_DIR = ./src/
+SRC_NAME = \
+	ft_putstr.c \
+	ft_strlen.c \
+	ft_strdup.c \
+	ft_itoabase.c \
+	ft_printf.c
+SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
+
+##########
+# OBJECT #
+##########
+
+OBJ_DIR = ./obj/
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_NAME))
+
+#########
+# RULES #
+#########
 
 all: $(NAME)
 
@@ -32,16 +70,22 @@ $(NAME): $(OBJ)
 	$(LIB) $@ $^
 	ranlib $@
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADERS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE)
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-norme: $(SRC)
-	norminette $^ $(HEADERS)
+norme: $(SRC) $(INCLUDE)
+	norminette $^
+
+test: all
+	$(CC) $(CFLAGS) -o test main.c $(INC) -L ./ -lftprintf
+
+.PHONY: all clean fclean re norme test

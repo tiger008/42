@@ -19,8 +19,9 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	char	buf[BUF_SIZ + 1];
+	char	buf[BUF_SIZE + 1];
 
 	va_start(ap, format);
+	buf[0] = 'a';
 	return (1);
 }
