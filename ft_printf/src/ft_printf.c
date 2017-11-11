@@ -12,16 +12,31 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdarg.h>
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
+	t_buffer	buf;
 	va_list	ap;
-	char	buf[BUF_SIZE + 1];
+	char	*tmp;
 
+	buf_init(&buf);
+	if (!format)
+		return (-1);
+	tmp = (char *)format;
 	va_start(ap, format);
-	buf[0] = 'a';
+	while (*tmp)
+	{
+		if (*tmp == '%')
+			switch_mode(&tmp, &buf, ap);
+		else
+		{
+			buf.add(*tmp, &buf);
+			tmp++;
+		}
+	}
+	buf.flush(&buf);
+	va_end(ap);
 	return (1);
 }

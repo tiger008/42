@@ -45,11 +45,16 @@ INC = -I $(INC_DIR)
 
 SRC_DIR = ./src/
 SRC_NAME = \
-	ft_putstr.c \
-	ft_strlen.c \
-	ft_strdup.c \
-	ft_itoabase.c \
-	ft_printf.c
+	print_char.c \
+	print_int.c \
+	print_short.c \
+	print_long.c \
+	print_llong.c \
+	print_intmax_t.c \
+	print_size_t.c \
+	ft_printf.c \
+	switch_mode.c \
+	buffer.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
 
 ##########
@@ -86,6 +91,6 @@ norme: $(SRC) $(INCLUDE)
 	norminette $^
 
 test: all
-	$(CC) $(CFLAGS) -o test main.c $(INC) -L ./ -lftprintf
+	$(CC) -o test main.c $(INC) -L ./ -lftprintf
 
 .PHONY: all clean fclean re norme test
