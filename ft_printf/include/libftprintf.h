@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <wchar.h>
-# define BUF_SIZE	1
+# define BUF_SIZE	4096
 # define TRUE	1
 # define FALSE	0
 # define ABS(X)	(X < 0) ? -X : X
