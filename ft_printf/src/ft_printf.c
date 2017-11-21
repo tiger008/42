@@ -15,7 +15,7 @@
 
 #include "libftprintf.h"
 
-int		ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	t_buffer	buf;
 	va_list	ap;

@@ -12,38 +12,38 @@
 
 #include "libftprintf.h"
 
-static long	get_base(t_specs *specs)
+void	print_long(long n, t_specs *specs, t_buffer *b)
 {
-	if (GET_BYTE(specs->type, X_TYPE) || GET_BYTE(specs->type, UX_TYPE))
-		return (16);
-	if (GET_BYTE(specs->type, O_TYPE))
-		return (8);
-	if (GET_BYTE(specs->type, B_TYPE))
-		return (2);
-	return (10);
+	if (n < 0)
+		SET(specs->info, SIGN);
+	print_ulong((unsigned long) ABS(n), specs, b);
 }
 
-void		print_long(unsigned long n, t_specs *specs, t_buffer *b)
+void	print_ulong(unsigned long n, t_specs *specs, t_buffer *b)
 {
 	char			*alpha_16;
+	size_t			len;
 	unsigned long	div;
 	unsigned long	base;
 	unsigned long	i;
 
 	base = (unsigned long) get_base(specs);
-	alpha_16 = (GET_BYTE(specs->type, X_TYPE)) ? ALPHA_16 : UALPHA_16;
+	alpha_16 = (GET(specs->type, T_X)) ? ALPHA_16 : UALPHA_16;
+	len = 1;
 	i = n;
 	div = 1;
-	if (GET_BYTE(specs->type, SIGN))
-		b->add('-', b);
+	IF(n == 0, SET(specs->info, IS_0))
 	while (i >= base)
 	{
 		div *= base;
 		i /= base;
+		len++;
 	}
+	len = check_flags_start(len, specs, b);
 	while (div)
 	{
 		b->add(alpha_16[(n / div) % base], b);
 		div /= base;
 	}
+	check_flags_end(len, specs, b);
 }

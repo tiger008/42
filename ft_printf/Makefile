@@ -45,6 +45,17 @@ INC = -I $(INC_DIR)
 
 SRC_DIR = ./src/
 SRC_NAME = \
+	buffer.c \
+	specs.c \
+	core.c \
+	flags.c \
+	check_flags.c \
+	modifier.c \
+	width.c \
+	preci.c \
+	type.c \
+	ft_printf.c \
+	switch_mode.c \
 	print_char.c \
 	print_int.c \
 	print_short.c \
@@ -52,9 +63,11 @@ SRC_NAME = \
 	print_llong.c \
 	print_intmax_t.c \
 	print_size_t.c \
-	ft_printf.c \
-	switch_mode.c \
-	buffer.c
+	print_p.c \
+	print_c.c \
+	print_wc.c \
+	print_s.c \
+	print_ws.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
 
 ##########
