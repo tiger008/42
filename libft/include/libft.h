@@ -21,6 +21,7 @@
 # define FALSE 0
 # define ER -1
 # define GNL_DEBUG 1
+# define MAX_INT 2147483648
 
 # define ABS(X)		(X < 0 ? -X : X)
 # define MAX(X, Y)	(X < Y ? Y : X)
@@ -28,13 +29,6 @@
 # define SIGN(X)	(X < 0 ? -1 : 1)
 
 # define T(expr, yes, no)	(expr ? yes : no)
-# define GOTO(lbl)			goto lbl
-# define FOR(a, b, c)		0){;} for ((a); (b); (c)
-# define SWITCH(x)			0){;} switch (x
-# define CASE(x);			case x:
-# define INIT(t, n, v)		t n = v;
-
-# define IF_RETURN(x, y)	if (x) return (y)
 
 /*
 ** ----------
@@ -105,6 +99,7 @@ void			ft_delsplit(char ***pa_str);
 int				ft_tablen(char **t);
 
 int				ft_atoi(const char *str);
+int				ft_satoi(const char *str);
 
 char			*ft_itoa(int n);
 

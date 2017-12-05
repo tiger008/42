@@ -14,7 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	IF_RETURN(GNL_DEBUG && !s, NULL);
+	if (GNL_DEBUG && !s)
+		return (NULL);
 	if ((char)c == '\0')
 		return ((char *)s + ft_strlen(s));
 	while (*s)

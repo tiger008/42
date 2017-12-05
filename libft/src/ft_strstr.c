@@ -16,8 +16,10 @@ char		*ft_strstr(const char *s1, const char *s2)
 {
 	size_t	l2;
 
-	IF_RETURN(!*s2, (char *)s1);
-	IF_RETURN(!(s1 = ft_strchr(s1, (int)s2[0])), NULL);
+	if (!*s2)
+		return ((char *)s1);
+	if (!(s1 = ft_strchr(s1, (int)s2[0])))
+		return (NULL);
 	l2 = ft_strlen(s2);
 	while (*s1)
 	{

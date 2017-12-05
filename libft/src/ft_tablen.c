@@ -17,7 +17,8 @@ int		ft_tablen(char **t)
 	int	len;
 
 	len = 0;
-	IF_RETURN(!t, len);
+	if (!t)
+		return (len);
 	while (t[len])
 		len++;
 	return (len);

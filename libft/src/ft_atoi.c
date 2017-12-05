@@ -14,30 +14,57 @@
 
 /*
 ** n for the sign
-** m for max digit
 ** r for result
 ** i for index
 */
 
 int		ft_atoi(const char *str)
 {
-	int	nmri[4];
+	int				n;
+	int				i;
+	unsigned int	r;
 
-	nmri[0] = -3;
-	while (nmri[0]++ < 0)
-		nmri[nmri[0] + 3] = 0;
-	while (ft_isblank(str[nmri[3]]) || ft_isreturn(str[nmri[3]]))
-		nmri[3]++;
-	if (str[nmri[3]] == '-')
+	n = 1;
+	i = 0;
+	r = 0;
+	while (ft_isblank(str[i]) || ft_isreturn(str[i]))
+		i++;
+	if (str[i] == '-' && ++i)
+		n = -1;
+	else if (str[i] == '+')
+		i++;
+	while (str[i] == '0')
+		i++;
+	while (ft_isdigit(str[i]))
 	{
-		nmri[0] = -1;
-		nmri[3]++;
+		if (r > MAX_INT)
+			return(0);
+		r = r * 10 + (unsigned int)(str[i++] - '0');
 	}
-	else if (str[nmri[3]] == '+')
-		nmri[3]++;
-	while (str[nmri[3]] == '0')
-		nmri[3]++;
-	while (ft_isdigit(str[nmri[3]]) && nmri[1]++ < 12)
-		nmri[2] = nmri[2] * 10 + (int)(str[nmri[3]++] - '0');
-	return (nmri[2] * nmri[0]);
+	return ((int)r * n);
+}
+
+int		ft_satoi(const char *str)
+{
+	int				ni[2];
+	unsigned int	r;
+
+	ni[0] = 1;
+	ni[1] = 0;
+	r = 0;
+	while (ft_isblank(str[ni[1]]) || ft_isreturn(str[ni[1]]))
+		ni[1]++;
+	if (str[ni[1]] == '-' && ++ni[1])
+		ni[0] = -1;
+	else if (str[ni[1]] == '+')
+		ni[1]++;
+	while (str[ni[1]] == '0')
+		ni[1]++;
+	while (ft_isdigit(str[ni[1]]))
+	{
+		if (r > MAX_INT)
+			ft_error("atoi int limit");
+		r = r * 10 + (unsigned int)(str[ni[1]++] - '0');
+	}
+	return (r * ni[0]);
 }

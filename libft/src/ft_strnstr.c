@@ -16,17 +16,20 @@ char		*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
 	size_t	size;
 
-	IF_RETURN(!*s2, (char *)s1);
+	if (!*s2)
+		return ((char *)s1);
 	size = ft_strlen(s2);
 	while (*s1 != *s2)
 	{
-		IF_RETURN(!*s1 || size > n, NULL);
+		if (!*s1 || size > n)
+			return (NULL);
 		s1++;
 		n--;
 	}
 	while (*s1)
 	{
-		IF_RETURN(size > n, NULL);
+		if (size > n)
+			return (NULL);
 		if (!strncmp(s1, s2, size))
 			return ((char *)s1);
 		n--;
