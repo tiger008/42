@@ -7,3 +7,6 @@
 [submodule "fillit"]
 	path = fillit
 	url = https://tperraut@github.com/tperraut/fillit
+[submodule "gnl"]
+	path = gnl
+	url = https://tperraut@github.com/tperraut/gnl
