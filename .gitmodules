@@ -1,3 +1,6 @@
 [submodule "libft"]
 	path = libft
 	url = https://tperraut@github.com/tperraut/libft
+[submodule "ft_printf"]
+	path = ft_printf
+	url = https://tperraut@github.com/tperraut/ft_printf
