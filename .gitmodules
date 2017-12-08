@@ -13,3 +13,6 @@
 [submodule "push_swap"]
 	path = push_swap
 	url = https://tperraut@github.com/tperraut/push_swap
+[submodule "fdf"]
+	path = fdf
+	url = https://tperraut@github.com/tperraut/fdf
