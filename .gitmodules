@@ -10,9 +10,6 @@
 [submodule "gnl"]
 	path = gnl
 	url = https://tperraut@github.com/tperraut/gnl
-[submodule "fdf"]
-	path = fdf
-	url = https://tperraut@github.com/tperraut/fdf
 [submodule "push_swap"]
 	path = push_swap
 	url = https://tperraut@github.com/tperraut/push_swap
